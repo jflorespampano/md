@@ -1,0 +1,3 @@
+gnu prolog
+[archivo] %sin ..pl carga archivo
+en vscode cargar extencion VSC-Prolog

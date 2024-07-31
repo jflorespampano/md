@@ -1,0 +1,2 @@
+https://www.tensorflow.org/install/pip?hl=es-419
+https://naps.com.mx/blog/un-primer-ejemplo-explicado-de-tensorflow/
