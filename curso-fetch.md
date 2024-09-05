@@ -1,13 +1,30 @@
 # fetch 
+
+## promesas
+```js
+function mipromesa(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve("Promesa cumplida");
+        }, 3000);
+    });
+}
+
+mipromesa()
+.then(function(resp){
+    console.log("promesa exitosa:",resp);
+},
+function(resp){
+    console.log("fracaso la promesa:",resp);
+});
+```
+
 El método fetch() lanza el proceso de solicitud de un recurso de la red. Esto devuelve una promesa que resuelve al objeto Response que representa la respuesta a la solicitud realizada.
 
 ## Formato general
 
 ```js
-// Example POST method implementation with await:
-async function postData(url = "", data = {}) {
-  // Default options are marked with *
-  const response = await fetch(url, {
+fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -18,14 +35,65 @@ async function postData(url = "", data = {}) {
     },
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data), // // el tipo de datos del body debe coincidir cpn el header "Content-Type"
+})
+```
+
+No usaremos todas las opciones, las que usaremos son:(method,headers,body) en algunas ocaciones(mode).
+
+## Formato con promesas
+
+```js
+function postData(url = "", data = {}) {
+    // Default options are marked with *
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(respuesta=>{
+        if(respuesta.ok){
+            return respuesta.json()
+        }else{
+            throw new Error("Error al cargar")
+        }
+    })
+}
+const album={
+    "userId": 1,
+    "title": "quidem molestiae enim"
+}
+postData("https://jsonplaceholder.typicode.com/albums", album)
+.then((data) => {
+  console.log(data); 
+});
+```
+## Formato con async/await
+
+```js
+// Example POST method implementation with await:
+async function postData(url = "", data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
     body: JSON.stringify(data), // body data type must match "Content-Type" header
-  });
+  })
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-postData("https://example.com/answer", { answer: 42 })
+const album={
+    "userId": 1,
+    "title": "quidem molestiae enim"
+}
+postData("https://jsonplaceholder.typicode.com/albums", album)
 .then((data) => {
-  console.log(data); // JSON data parsed by `data.json()` call
+  console.log(data); 
 });
 
 ```

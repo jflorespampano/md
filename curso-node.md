@@ -746,6 +746,8 @@ npm i node-windows
 
 ```
 ## ligas
+[path](https://nodejs-es.github.io/api/path.html)
+
 [documentacion pm2](https://pm2.keymetrics.io/docs/usage/quick-start/)
 
 [node-windows](https://www.npmjs.com/package/node-windows)
