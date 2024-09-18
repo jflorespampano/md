@@ -22,17 +22,21 @@ Para cosntrur un nuevo proyecto de consola
 En la consola:
 * Crear una carpeta de proyecto
 * Ir a esa carpeta `cd carpeta`
-* Ejecutar 
+* Ejecutar para construir  en version 7.0
 ```sh
 dotnet new console --framework net7.0
 ```
-* Ejecutar 
+* Ejecutar  para construir  en version 7.0
 ```sh
 dotnet new console -f net7.0
 ```
-* Ejecutar 
+* Ejecutar  para construir  en version 5.0
 ```sh
 dotnet new console -f net5.0
+```
+* Construir  proyecto
+```sh
+dotnet build
 ```
 * Ejecutar proyecto 
 ```sh

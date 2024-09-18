@@ -105,173 +105,6 @@ npm run dev
 ```
 La entrada "devenv" la usaremos mas adelante
 
-
-## modulos (desde youtube: desarrollo Util)
-
-Los módulos son la forma en que organizamos nuestro proyecto en diferetes archivos, un nódulo es simplemente un archvo con extensión .js (tambien puede ser extensiones .mjs o .cjs).
-
-Existen 2 formas de trabajar con modulos en node, un modulo es un archivo con código js que puede exportar elementos tales como funciones, clases y objetos.
-Las dos formas son:
-
-1. CommonJS que usa la sentencia **require**, archivos con extencion js (o cjs)
-2. ESM (ecma script module) que usan la sentencia **import**, archivos con extencion mjs
-
-**Nota CommonJS (es el que usa node por defecto)**
-
-## Crear un modulo de CommonJS
-
-Por ejemplo creamos el modulo: operaciones
-
-Archivo:operaciones.js
-```js
-const suma=(n1,n2)=> return n1+n2
-const resta=(n1,n2)=> return n1-n2
-const multiplicacion=(n1,n2)=> return n1*n2
-const division=(n1,n2)=> return n1/n2
-console.log(module) //muestra lo que module contiene
-module.exports={suma, resta, multiplicacion, division}
-```
-
-En el archivo **main.js**
-```js
-//importar el modulo
-const operaciones = require('./operaciones')
-
-console.log(operaciones.suma(2,3))
-```
-
-**Nota: Con require se puede importar json, el archivo json no debera tener module.exports**
-
-## Usar commonjs 
-
-Se puede definir en el proyecto el tipo de modulos a usar (commonjs o esm) de dos formas, en el archivo package.json (creado con el comando npm init):
-
-* para definir que se usará Commonjs, en el archivo package.json, no poner nada o poner la entrada: 
-**"type":"commonjs"**
-* para usar modulos de tipo ESM poner la entrada: 
-**"type":"module"**
-
-## Usar modulos ESM
-
-Para usar el sistema module ESM
-Los archivos tendran la extension .mjs o pueden tener extencion .js y tener la entrada "type":"module" en el package.json.
-
-### Exportar importa en ESM:
-
-Archivo: operaaciones.mjs
-```js
-const suma=(n1,n2)=> {return n1+n2}
-const resta=(n1,n2)=> {return n1-n2}
-const multiplicacion=(n1,n2)=> {return n1*n2}
-const division=(n1,n2)=> {return n1/n2}
-
-export {suma, resta, multiplicacion, division}
-export default suma
-```
-Otra forma de escribir el archivo operaciones.mjs
-```js
-export const data=[
-    {name:"ana"},
-    {name:"luis"},
-    {name:"paco"},
-    {name:"sergio"},
-    {name:"rosa"}
-]
-export const suma=(n1,n2)=> {
-    return n1+n2
-}
-export const resta=(n1,n2)=> {
-    return n1-n2
-}
-export const multiplicacion=(n1,n2)=> {
-    return n1*n2
-}
-export const division=(n1,n2)=> {
-    return n1/n2
-}
-```
-
-en el main.js
-```js
-//importar desestructurando
-import {suma, resta, multiplicacion, division} from './operacines.mjs'
-//o importar el default
-import suma from './operacines.mjs'
-```
-
-|                    Uso                      |              sintaxis               |
-|---------------------------------------------|-------------------------------------|
-|importar un modulo completo                  | import * as name from ‘module-name’ |
-|importar el export default de 1 modulo       | import name from ‘module-name’      |
-|importar una exportacion unica               | import { name } from ‘module-name’  |
-|importar multiples exportaciones             | import { nameOne , nameTwo } from ‘module-name’ |
-|importar un modulo solo para efectos laerales| import ‘./module-name’              |
-
-
-## Cambios según el tipo de modulos
-
-En commonjs puede usar __dirname, __filename, tambien importar archivos json
-
-En ESM no se puede importar archivos json, tampoco se puede usar el __dirname, ni el __filename.
-Para hacerlo, hay que saber que el import es un objeto:
-
-console.log(import.meta.url)
-
-## usar commonjs desde ESM (Ecma Script Module)
-
-**Nota en el archivo package.jon debe tener la entrada "type": "module"**
-
-si tenemos un archivo .cjs lo importamos así:
-```js
-import {suma} from './operaciones.cjs'
-```
-
-Cargar un archivo .json
-```js
-import {createRequire} from 'module'
-const require=createRequire(import.meta.url)
-
-const user=require('./users.json')
-console.log(user)
-
-```
-
-Usar __dirname, __filename en ESM
-```js
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const __filename = fileURLToPath(import.meta.url);
-
-console.log("🚀 ~ file: index.js:9 ~ __filename:", __filename)
-console.log("🚀 ~ file: index.js:10 ~ __dirname:", __dirname)
-```
-
-## usar ESM desde Commonjs
-
-Podemos usar import dinamicos, por ejemplo
-Archivo: prueba.mjs
-```js
-const data=[
-    {id:1,nombre:"juan"},
-    {id:2,nombre:"luis"},
-    {id:3,nombre:"pablo"},
-]
-export default function suma(){
-    return 34
-}
-export {suma,data}
-```
-Si tenemos un archivo .mjs, lo cargamos con una **importación dinámica**, así:
-```js
-import('./prueba.mjs')
-.then((module)=>{
-    console.log(module.suma(3,4))
-    //console.log(module.default.suma(2,3))
-})
-```
-
 ## variables de entorno
 
 crear un archivo .env y ponerlo en el gitignore, tambien poner el en gitignore node_modules  por cierto, el archivo .env tendra pares clave=valor
@@ -301,7 +134,7 @@ const PORT=process.env.PORT //obtenemos el puerto
 
 ```
 
-## variables de entornno a partir de la version 20
+## variables de entorno a partir de la version 20
 
 A partir de la version 20, de manera nativa puede cargar varios archivos (o uno) con variables de entorno, ejemplo suponga que tiene el archivo .env, para cargarlo en node despues de la version 20 puede usar:
 
@@ -326,303 +159,11 @@ node --watch index.js
 ```
 
 ## data fake
-En la página: https://json-generator.com/ 
+En la página (no recomendada) : https://json-generator.com/ 
+[Otra:](https://www.jsongenerator.io/)
+[Otra:](https://mockaroo.com/)
 tenemos un generdor de datos json , esto es muy util para hacer pruebas
 
-# usar express
-
-Biblioteca para manejo de peticions http
-
-## Cargar express en su proyecto
-```sh
-#iniciar proyecto con los valores de default
-npm init -y
-#cargar express
-npm i express
-#cargar dotenv
-npm i dotenv
-```
-
-Crear archivo: .env
-```js
-PORT=3000
-```
-agregar la entrada: "type":"module", al package.json
-
-## middleware
-
-Ejemplo de recepcion de datos de diferetes formas en express
-y usando el middleware json() y text() podemos recibir datos del body en post, put
-con un body en formato texto  o json
-
-```js
-import express from "express"
-import dotenv from 'dotenv'
-
-dotenv.config() //cargar las variables de entorno del archivo .env en process.env
-const PORT=process.env.PORT //cargar el numeo de puerto
-
-const app=express()
-//middleware para  aceptar json y texto
-app.use(express.json())
-app.use(express.text())
-app.use(express.urlencoded({extended:false}));
-app.get("/",(req,res)=>{
-    res.set({"content-type":"text/html; charset=utf-8"})
-    res.end(
-        `
-        <h1>Hola mundo</h1>
-        `
-    )
-})
-//parametros en la url
-//espera una url asi: http://localhost:3000/user/779-jflores-59
-app.get("/user/:id-:name-:edad",(req,res)=>{
-    res.set({"content-type":"text/html; charset=utf-8"})
-    //params almacena los  parametros enviados por la url
-    console.log(req.params)
-    res.end(
-        `
-        <h1>${req.params.name} binevenidos a express id=${req.params.id}</h1>
-        `
-    )
-})
-//parametros query
-//espera:http://localhost:3000/search?id=779&nombre=alejandro flores&edad=59
-app.get('/search',(req,res)=>{
-    const data=req.query
-    console.log(data)
-    res.send(
-        `
-        <h1>${data.id} bienvenido ${data.nombre} tu edad ${data.edad}</h1>
-        `
-    )
-})
-//parametros en el body
-//espera:http://localhost:3000/account, con un body en formato json o Form-encode
-app.post('/account',(req,res)=>{
-    console.log(req.body)
-    res.send(
-        `
-        <h2>Hola recibiendo POST ${req.body.nombre} edad ${req.body.edad}</h2>
-        `
-        )
-})
-app.put('/account',(req,res)=>{
-    console.log(req.body)
-    res.send(
-        `
-        <h2>Hola recibiendo PUT ${req.body.nombre} edad ${req.body.edad}</h2>
-        `
-        )
-})
-app.patch('/account',(req,res)=>{
-    console.log(req.body)
-    res.send(
-        `
-        <h2>Hola recibiendo PATCH ${req.body.nombre} edad ${req.body.edad}</h2>
-        `
-        )
-})
-
-//espera id comom parametro query: http://localhost:3000/search?id=779
-app.delete('/account',(req,res)=>{
-    console.log(req.query)
-    res.send(
-        `
-        <h2>Hola recibiendo con DELETE un id=${req.query.id}</h2>
-        `
-        )
-})
-
-app.listen(PORT,()=>{
-    console.log(`iniciando express desde: http://localhost:${PORT}/`)
-})
-```
-
-# Usar SQlite
-
-## Crear una base de datos en SQLite
-
-```js
-const sqlite3 = require('sqlite3').verbose();
-// const db = new sqlite3.Database(':memory:');
-let datos = [
-    {
-        "userId": 1,
-        "id": 1,
-        "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        "body": "quia et suscipit\nsuscipit recusandae consequuntur architecto"
-    },
-    {
-        "userId": 1,
-        "id": 2,
-        "title": "qui est esse",
-        "body": "est rerum tempore  molestiae ut reiciendis\nqui aperiam non debitis po nisi nulla"
-    }
-]
-
-
-function crearTabla(db) {
-    db.serialize(() => {
-        const sql = `CREATE TABLE IF NOT EXISTS posts(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            userId INTEGER NOT NULL,
-            title TEXT NOT NULL,
-            body  TEXT NOT NULL
-        ); `
-        db.run(sql);
-
-        const stmt = db.prepare("INSERT INTO posts(userId, title, body) VALUES (?,?,?);");
-        datos.forEach(e => {
-            stmt.run(e.userId, e.title, e.body);
-        });
-
-        stmt.finalize();
-
-        db.each("SELECT * FROM posts;", (err, row) => {
-            console.log(row.id + ": " + row.title);
-        });
-    });
-
-    //db.close();
-
-}
-
-db = new sqlite3.Database('posts.sqlite3', (err) => {
-    if (err) {
-        console.log('Could not connect to database', err)
-    } else {
-        console.log('Connected to database');
-    }
-});
-crearTabla(db);
-db.close();
-```
-
-## Getionar datos de una base de datos
-
-```js
-import sqlite3 from 'sqlite3'
-import { open } from 'sqlite'
-
-//para depuracion
-sqlite3.verbose();
-
-async function muestra() {
-    // open the database
-    const db = await open({
-        filename: 'posts.sqlite3',
-        driver: sqlite3.Database
-    });
-    const result = await db.all('SELECT * FROM posts');
-    db.close();
-    console.log(result);
-}
-async function leerUnDato() {
-    const db = await open({
-        filename: 'posts.sqlite3',
-        driver: sqlite3.Database
-    });
-    const result = await db.get('SELECT * FROM posts WHERE id = ?', '1')
-    console.log(result);
-}
-async function insertaDato({ id, userId, title, body }) {
-    const db = await open({
-        filename: 'posts.sqlite3',
-        driver: sqlite3.Database
-    });
-    const sql = `INSERT INTO posts(userId,title,body) VALUES (${userId},'${title}','${body}')`;
-    const result = await db.run(sql);
-    console.log('resultado:', result);
-    db.close();
-    muestra();
-}
-
-async function actualizaDato({ id, userId, title, body }) {
-    const db = await open({
-        filename: 'posts.sqlite3',
-        driver: sqlite3.Database
-    });
-    const sql = `update posts set userId=${userId}, title='${title}', body='${body}' where id=${id}`;
-    const result2 = await db.run(sql)
-    console.log(result2);
-    db.close();
-    muestra();
-}
-/////////////////////////////////////// promesas ///////////////////////////////
-function muestraCnPromesa(callback) {
-    open({
-        filename: 'posts.sqlite3',
-        driver: sqlite3.Database
-    }).then((db) => {
-        db.all('SELECT * FROM posts')
-            .then((result) => {
-                callback('salida', result);
-                // console.log(result);
-            })
-            .then(() => {
-                db.close().then(() => {
-                    console.log('cerrada la bd');
-                });
-            });
-    });
-}
-
-function insertaDatoCnPromesa({ id, userId, title, body }, callback) {
-    open({
-        filename: 'posts.sqlite3',
-        driver: sqlite3.Database
-    }).then(db => {
-        const sql = `INSERT INTO posts(userId,title,body) VALUES (${userId},'${title}','${body}')`;
-        db.run(sql)
-            .then(result => {
-                callback('****** salida: ', result);
-                // console.log(result);
-            })
-            .then(() => {
-                db.close().then(() => {
-                    console.log('cerrada la bd');
-                });
-            }).catch(error => {
-                console.log('error en la consulta', error);
-            });
-    }).catch((error) => {
-        console.log('error al abrir la bd', error);
-    });
-}
-
-function actualizaDatoCnPromesa({ id, userId, title, body }) {
-    open({
-        filename: 'posts.sqlite3',
-        driver: sqlite3.Database
-    }).then(db => {
-        const sql = `update posts set userId=${userId}, title='${title}', body='${body}' where id=${id}`;
-        db.run(sql)
-            .then(result => {
-                console.log(result);
-            })
-            .then(() => {
-                db.close().then(() => {
-                    console.log('cerrada la bd');
-                });
-            }).catch(error => {
-                console.log('error en la consulta', error);
-            });
-    }).catch((error) => {
-        console.log('error al abrir la bd', error);
-    });
-}
-
-muestraCnPromesa(console.log);
-
-```
-
-## manejo de rutas de directorio path
-
-```js
-process.cwd() //devuelve el directorio de trabajo corriente del proceso de Node.js
-```
 ### mostrar pdf
 [Mostrar pdf](https://mozilla.github.io/pdf.js/examples/index.html#interactive-examples)
 
@@ -649,8 +190,9 @@ Las propiedades de acceso estáticas RegExp.$1,…, RegExp.$9 devuelven coincide
 [ref](https://www.npmjs.com/package/json-server)
 
 ```sh
+# instalar json-server
 npm i json-server
-```
+``` 
 crear un archivo json, pej: en la carpeta db: db/products.jon con los datos
 ```js
 {
@@ -666,13 +208,22 @@ crear un archivo json, pej: en la carpeta db: db/products.jon con los datos
     ]
 }
 ```
-Agrear al package.json, en la  lista de scripts, la entrada:
+
+Puede arrancar el servidor así:
+```sh
+npx json-server db.json
+```
+O peuede agrear al package.json, en la  lista de scripts, la entrada:
 
 ```json
 "back": "json-server --watch db/products.json --port 3000"
 ```
+En la nueva version se pude omitir --watch
+```json
+"back": "json-server db/products.json --port 3000"
+```
 
-arrancar el servidor json así:
+puede arrancar el servidor json así:
 ```sh
 npm run back
 ```
@@ -684,6 +235,12 @@ http://localhost:3000/products
 http://localhost:3000/products/1
 ```
 
+### json-server con npx
+
+```sh
+# ejecutar json-server con npx
+npx json-server data.json -p 3000
+```
 ## crear proyectos
 usando modulos common js
 [crear proyectos con express](https://expressjs.com/es/starter/generator.html)
@@ -696,13 +253,15 @@ npm install -g express-generator@4
 # crear el proyectco por ejemplo con el motor de vsitas ejs
 express nodeServer --view=ejs
 cd nodeSerever
-npm innstall
+npm install
 npm run start
 ```
 con run start: node ./bin/www
 o: node --env-file=.env ./bin/www
 
 [Con express](https://www.npmjs.com/package/express)
+
+[Crear proyecto express](https://www.npmjs.com/package/express-create-app)
 
 ## extension para chrome
 

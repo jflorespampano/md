@@ -1,56 +1,24 @@
-# Mysql CLI de Xamp
+## sqlite
 
-En la ventana  de Xamp en la parte superior derecha de clic en el icono de Shell, vera como respuesta:
-```sh
-#
-```
+SQLite es una biblioteca en lenguaje C que implementa un motor de base de datos SQL pequeño, rápido, autónomo, de alta confiabilidad y con todas las funciones. SQLite es el motor de base de datos más utilizado en el mundo. SQLite está integrado en todos los teléfonos móviles y la mayoría de las computadoras y viene incluido en innumerables otras aplicaciones que las personas usan todos los días.
 
-En el Shell de Xamp para entrar a Mysql, con el usurio 'root' ponga el comando:
-```sql
-mysql -u root -p #responderá pidiendo un password
-# contestara con la siguiente línea
-Enter password:
-# ponga su password o enter si no puso un password para root cuando instalo Xamp
+El formato de archivo SQLite es estable, multiplataforma y compatible con versiones anteriores y los desarrolladores se comprometen a mantenerlo así hasta el año 2050. Los archivos de base de datos SQLite se utilizan comúnmente como contenedores para transferir contenido enriquecido entre sistemas y como un formato de archivo a largo plazo para datos. Hay más de 1 billón (1.0e12) de bases de datos SQLite en uso activo.
 
-Pruebe el siguiente comado para verificar tu conexion
-SELECT VERSION(), CURRENT_DATE;
+El código fuente de SQLite es de dominio público y es gratuito para que todos lo usen para cualquier propósito.
 
-# Comandos
-# ayuda de comandos
-help
-# mostrar las base de datos:
-show databases;
+**Una BD en SQlite se almacena en un unico archivo** por esto: No existe una instalación como tal de SQlite, pero si existen aplicaciones que nos pueden ayudar a crear, editar y modificar una base de datos en SQLite.
 
-# Crear base de datos
-create dabase if not exists mydatabase; # la crea y la pone en uso
-# Poner en uso una base de datos
-use mydatabase; # la pone en uso
+## sqlite studio
 
-# Crear tablas
-create table if not exists carrera (
-    id int, 
-    nombre varchar(50), 
-    creditos int, 
-    primary key(id)
-);
+SQLiteStudio es una aplicación de escritorio para explorar y editar archivos de bases de datos SQLite. Está dirigida a personas que saben qué es SQLite o qué son las bases de datos relacionales en general.
 
-create table if not exists alumno (
-    id int not null auto_increment, 
-    nombre varchar(50), 
-    idcarrera int, 
-    primary key(id), 
-    foreign key(idcarrera) references carrera(id)
-);
+[Manual de sQliteStudio](https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual)
 
-# Insertar datos
-insert into carrera (id, nombre, creditos) values(1,”isc”,110);
+## Manejadores de BD visuales para SQLite
 
-# Consultar datos
-select * from table;
-
-# salir del CLI:
-quit;
-```
+[un db manager para sqlite](https://sqlitebrowser.org/dl/)
+[**ok** un db manager para sqlite](https://sqlitestudio.pl/)
+**Nota para HeidiSql** tiene un bug en el AUTOINCREMENT en el HeidiSql al usarlo con SQLite
 
 # SQLITE Cli
 
@@ -152,11 +120,63 @@ Mostrar el esquema de la base de datos
 .databases
 ```
 
-Manejadores de BD visuales para SQLite
-[un db manager para sqlite](https://sqlitebrowser.org/dl/)
-[**ok** un db manager para sqlite](https://sqlitestudio.pl/)
-**Nota** tiene un bug en el AUTOINCREMENT  el HeidiSql al usarlo con SQLite
+## MySql
 
-# referencias
-[descargar desde aquí:](https://www.sqlite.org/download.html)
-[referencia: ](https://sqlite.org/cli.html)
+# Mysql CLI de Xamp
+
+En la ventana  de Xamp en la parte superior derecha de clic en el icono de Shell, vera como respuesta:
+```sh
+#
+```
+
+En el Shell de Xamp para entrar a Mysql, con el usurio 'root' ponga el comando:
+```sql
+mysql -u root -p #responderá pidiendo un password
+# contestara con la siguiente línea
+Enter password:
+# ponga su password o enter si no puso un password para root cuando instalo Xamp
+
+Pruebe el siguiente comado para verificar tu conexion
+SELECT VERSION(), CURRENT_DATE;
+
+# Comandos
+# ayuda de comandos
+help
+# mostrar las base de datos:
+show databases;
+
+# Crear base de datos
+create dabase if not exists mydatabase; # la crea y la pone en uso
+# Poner en uso una base de datos
+use mydatabase; # la pone en uso
+
+# Crear tablas
+create table if not exists carrera (
+    id int, 
+    nombre varchar(50), 
+    creditos int, 
+    primary key(id)
+);
+
+create table if not exists alumno (
+    id int not null auto_increment, 
+    nombre varchar(50), 
+    idcarrera int, 
+    primary key(id), 
+    foreign key(idcarrera) references carrera(id)
+);
+
+# Insertar datos
+insert into carrera (id, nombre, creditos) values(1,”isc”,110);
+
+# Consultar datos
+select * from table;
+
+# salir del CLI:
+quit;
+```
+
+## referencias
+[sqlite](https://www.sqlite.org/)
+[SQLite Tools-descargar desde aquí:](https://www.sqlite.org/download.html)
+[referencia CLI de sqlite: ](https://sqlite.org/cli.html)
