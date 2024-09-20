@@ -5,8 +5,8 @@ Los módulos son la forma en que organizamos nuestro proyecto en diferetes archi
 Existen 2 formas de trabajar con modulos en node, un modulo es un archivo con código js que puede exportar elementos tales como funciones, clases y objetos.
 Las dos formas son:
 
-1. CommonJS que usa la sentencia **require**, archivos con extencion js (o cjs)
-2. ESM (ecma script module) que usan la sentencia **import**, archivos con extencion mjs
+1. CommonJS que usa la sentencia **require** para importar, module.exports={} para exportar,  archivos con extencion js (o cjs)
+2. ESM (ecma script module) que usan la sentencia **import** ara importar, export {}/export default funcion, archivos con extencion mjs
 
 **Nota CommonJS (es el que usa node por defecto)**
 
@@ -27,7 +27,7 @@ module.exports={suma, resta, multiplicacion, division}
 En el archivo **main.js**
 ```js
 //importar el modulo
-const operaciones = require('./operaciones')
+const operaciones = require('./operaciones.cjs')
 
 console.log(operaciones.suma(2,3))
 ```
@@ -43,7 +43,7 @@ Se puede definir en el proyecto el tipo de modulos a usar (commonjs o esm) de do
 * para usar modulos de tipo ESM poner la entrada: 
 **"type":"module"**
 
-## Mmodulos ESM (Ecma Script odule)
+## Mmodulos ESM (Ecma Script module)
 
 Para usar el sistema module ESM, los archivos tendran la extension .mjs o pueden tener extencion .js y tener la entrada "type":"module" en el package.json.
 
@@ -80,14 +80,20 @@ export const multiplicacion=(n1,n2)=> {
 export const division=(n1,n2)=> {
     return n1/n2
 }
+export default suma
 ```
 
 en el main.js
 ```js
 //importar desestructurando
 import {suma, resta, multiplicacion, division} from './operacines.mjs'
+// y usar suma(_,_)
 //o importar el default
 import suma from './operacines.mjs'
+// y usar suma(_,_)
+//o
+import * as operaciones from './operacines.mjs'
+// y usar aoperaciones.suma(_,_)
 ```
 
 ## Resumen de sintaxis de ESM
@@ -98,7 +104,7 @@ import suma from './operacines.mjs'
 |importar el export default de 1 modulo       | import name from ‘module-name’      |
 |importar una exportacion unica               | import { name } from ‘module-name’  |
 |importar multiples exportaciones             | import { nameOne , nameTwo } from ‘module-name’ |
-|importar un modulo solo para efectos laerales| import ‘./module-name’              |
+|importar un modulo solo para efectos laterales| import ‘./module-name’              |
 
 
 ## Cambios según el tipo de modulos
@@ -109,6 +115,18 @@ En ESM no se puede importar archivos json, tampoco se puede usar el __dirname, n
 Para hacerlo, hay que saber que el import es un objeto:
 
 console.log(import.meta.url)
+
+Usar __dirname, __filename en ESM
+```js
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+
+console.log("🚀 ~ file: index.js:9 ~ __filename:", __filename)
+console.log("🚀 ~ file: index.js:10 ~ __dirname:", __dirname)
+```
 
 ## usar commonjs desde ESM (Ecma Script Module)
 
@@ -127,18 +145,6 @@ const require=createRequire(import.meta.url)
 const user=require('./users.json')
 console.log(user)
 
-```
-
-Usar __dirname, __filename en ESM
-```js
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const __filename = fileURLToPath(import.meta.url);
-
-console.log("🚀 ~ file: index.js:9 ~ __filename:", __filename)
-console.log("🚀 ~ file: index.js:10 ~ __dirname:", __dirname)
 ```
 
 ## usar ESM desde Commonjs
@@ -162,6 +168,13 @@ import('./prueba.mjs')
 .then((module)=>{
     console.log(module.suma(3,4))
     //console.log(module.default.suma(2,3))
+})
+```
+otra forma:
+```js
+import('./opsmjs.mjs')
+.then(({suma})=>{
+    console.log(suma(4,5))
 })
 ```
 

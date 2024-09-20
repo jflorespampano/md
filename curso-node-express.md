@@ -1,6 +1,13 @@
 # usar express
 
-Biblioteca para manejo de peticions http
+Biblioteca para manejo de peticions http. Express es el framework web más popular de Node, y es la librería subyacente para un gran número de otros frameworks web de Node populares. Proporciona mecanismos para:
+
+1. Escritura de manejadores de peticiones con diferentes verbos HTTP en diferentes caminos URL (rutas).
+2. Integración con motores de renderización de "vistas" para generar respuestas mediante la introducción de datos en plantillas.
+3. Establecer ajustes de aplicaciones web como qué puerto usar para conectar, y la localización de las plantillas que se utilizan para renderizar la respuesta.
+4. Añadir procesamiento de peticiones "middleware" adicional en cualquier punto dentro de la tubería de manejo de la petición.
+
+A pesar de que Express es en sí mismo bastante minimalista, los desarrolladores han creado paquetes de middleware compatibles para abordar casi cualquier problema de desarrollo web. Hay librerías para trabajar con cookies, sesiones, inicios de sesión de usuario, parámetros URL, datos POST, cabeceras de seguridad y muchos más. Puedes encontrar una lista de paquetes middleware mantenida por el equipo de Express en Express Middleware (junto con una lista de algunos de los paquetes más populares de terceros).
 
 ## Cargar express en su proyecto
 ```sh
@@ -8,15 +15,46 @@ Biblioteca para manejo de peticions http
 npm init -y
 #cargar express
 npm i express
-#cargar dotenv
-npm i dotenv
 ```
 
-Crear archivo: .env
-```js
-PORT=3000
+Agregar la entrada: "type":"module", al package.json, así:
+```json
+{
+  "name": "servidor express",
+  "version": "1.0.0",
+  "description": "ejemplo de express",
+  "main": "index.mjs",
+  "type":"module"
+  "scripts": {
+    "test": "node run index"
+  },
+  "author": "jflores",
+  "license": "ISC",
+  "keywords": [],
+    "dependencies": {
+    "express": "^4.21.0",
+  }
+}
+
 ```
-agregar la entrada: "type":"module", al package.json
+
+## ejemplo básico
+
+```js
+//archivo:index.js
+
+import express from 'express';
+const app = express();
+
+app.get('/', (req, res) => {
+	res.send('Hola mundo');
+})
+const PORT = 5000;
+
+app.listen(PORT, () => {
+	console.log(`Servidor corriendo el el PUERTO ${PORT}`);
+})
+```
 
 ## middleware
 
@@ -28,7 +66,7 @@ Las funciones de middleware son una parte crucial de una aplicación Express.js,
 4. Almacenamiento en caché: implemente mecanismos de almacenamiento en caché para optimizar el rendimiento.
 5. Registro: registre solicitudes y respuestas para fines de auditoría y depuración.
 
-Estructura básica de middleware
+### Estructura básica de middleware
 
 Una función de middleware toma tres argumentos:
 
@@ -44,6 +82,7 @@ const myMiddleware = (req, res, next) => {
   next(); // Call the next middleware function
 };
 ```
+
 Funciones middleware de biblioteca: json() y text(), son usadas para la recepcion de datos de diferetes formatos en express
 con ellas podemos recibir datos del body (con formato texto  o json) para post, put.
 
@@ -52,8 +91,25 @@ express.json() es una función de middleware integrada en Express.js, introducid
 express.text() es una función de middleware integrada en Express.js, un popular framework web de Node.js. Analiza las cargas útiles de las solicitudes entrantes en una cadena y se basa en el middleware body-parser
 
 El middleware urlencoded() de Express.js se utiliza para analizar solicitudes entrantes con cargas útiles codificadas en URL. Es una función de middleware integrada que analiza el cuerpo de la solicitud como datos codificados en URL y completa el objeto req.body con los datos analizados. La opción **extended** permite la inclusión de objetos anidados en los datos analizados. Si se establece en falso, solo se analizarán pares clave-valor planos. El middleware urlencoded solo analiza las solicitudes con el encabezado Content-Type establecido en application/x-www-form-urlencoded. Si el encabezado no está presente o está establecido en un valor diferente, el middleware no analizará el cuerpo de la solicitud.
+
 En Express.js 4.16.0 y versiones posteriores, el middleware body-parser ya no es necesario y se puede utilizar en su lugar el middleware urlencoded integrado.
 
+
+## ejemplo medio
+
+Usaremos un archivo .env. 
+Cree archivo: .env
+
+Archivo: .env
+```js
+PORT=3000
+```
+Cargue la biblioteca dotenv
+```sh
+npm i dotenv
+```
+
+Código del ejemplo
 ```js
 import express from "express"
 import dotenv from 'dotenv'
