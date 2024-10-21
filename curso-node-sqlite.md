@@ -152,6 +152,10 @@ async function actualizaDato({ id, userId, title, body }) {
     db.close();
     muestra();
 }
+
+## Getionar datos de una base de datos usando promesas
+
+
 /////////////////////////////////////// promesas ///////////////////////////////
 function muestraCnPromesa(callback) {
     open({
@@ -283,7 +287,8 @@ export class Posts{
 export default Posts
 ```
 
-Ejemplo de uso:
+## Ejemplo de uso:
+Archivo: controller.mjs
 
 ```js
 import Posts from "./model.mjs"

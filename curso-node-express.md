@@ -66,6 +66,8 @@ Las funciones de middleware son una parte crucial de una aplicación Express.js,
 4. Almacenamiento en caché: implemente mecanismos de almacenamiento en caché para optimizar el rendimiento.
 5. Registro: registre solicitudes y respuestas para fines de auditoría y depuración.
 
+El middleware en Express.js es una función que tiene acceso a todo el objeto de solicitud (req), todo el objeto de respuesta (res) y la siguiente función de middleware en el ciclo de solicitud-respuesta de la aplicación.
+
 ### Estructura básica de middleware
 
 Una función de middleware toma tres argumentos:
@@ -81,6 +83,9 @@ const myMiddleware = (req, res, next) => {
   console.log(`Received request: ${req.method} ${req.url}`);
   next(); // Call the next middleware function
 };
+
+//cargarla antes de las funciones de atencion a get/post/etc, se carga así:
+app.use(myMiddleware)
 ```
 
 Funciones middleware de biblioteca: json() y text(), son usadas para la recepcion de datos de diferetes formatos en express
@@ -197,6 +202,40 @@ app.listen(PORT,()=>{
 
 ## manejo de rutas de directorio path
 
+process.cwd() es un método de Node.js que devuelve el directorio de trabajo actual del proceso de Node.js. Proporciona la ruta absoluta del directorio desde el que se inició el proceso de Node.js. Este directorio se suele denominar “directorio de trabajo actual” o “CWD”
+
 ```js
 process.cwd() //devuelve el directorio de trabajo corriente del proceso de Node.js
 ```
+
+Prácticas recomendadas:
+
+Use process.cwd() para construir rutas de archivos y garantizar la coherencia de la plataforma.
+Tenga en cuenta el comportamiento de los enlaces simbólicos y los posibles problemas con la distinción entre mayúsculas y minúsculas en determinadas plataformas.
+Pruebe su código en diferentes plataformas para garantizar la compatibilidad.
+Al comprender process.cwd() y su comportamiento, puede escribir aplicaciones Node.js más sólidas e independientes de la plataforma.
+
+## crear proyectos
+usando modulos common js
+[crear proyectos con express](https://expressjs.com/es/starter/generator.html)
+
+## crar proyectos (ok)
+Para crear un proyecto node con express puede tambien usar el generador de proyectos:
+```sh
+#instaar el genrador de proyectos
+npm install -g express-generator@4
+# crear el proyectco por ejemplo con el motor de vsitas ejs
+express nodeServer --view=ejs
+cd nodeSerever
+npm install
+npm run start
+```
+con run start: node ./bin/www
+o: node --env-file=.env ./bin/www
+
+
+# refs
+
+[Con express](https://www.npmjs.com/package/express)
+
+[Crear proyecto express](https://www.npmjs.com/package/express-create-app)

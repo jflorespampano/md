@@ -141,13 +141,14 @@ A partir de la version 20, de manera nativa puede cargar varios archivos (o uno)
 ```sh
 node --env-file .env index.js
 # para cargar mas de un archivo con variables de entorno:
-node --env-file .env --env-file .envdevelopment index.js
+node --env-file=.env --env-file=config_db.env index.js
 ```
-y ahora puede acceder a las variables de entorno:
+
+Esto cargará las variables de entorno de ambos archivos y las fusionará en el objeto process.env y ahora puede acceder a las variables de entorno:
 
 ```js
-console.log(process.env.BACKEND_URL)
-console.log(process.env.DB_USR)
+console.log(process.env.PORT)
+console.log(process.env.DB_PLATFORM)
 ```
 
 ## watch
@@ -156,6 +157,14 @@ Es como un nodemon nativo:
 
 ```js
 node --watch index.js
+```
+
+## manejo de rutas de directorio path
+
+process.cwd() "current work directory" es un método de Node.js que devuelve el directorio de trabajo actual del proceso de Node.js. Proporciona la ruta absoluta del directorio desde el que se inició el proceso de Node.js. Este directorio se suele denominar “directorio de trabajo actual” o “CWD”
+
+```js
+process.cwd() //devuelve el directorio de trabajo corriente del proceso de Node.js
 ```
 
 ## data fake
@@ -183,6 +192,100 @@ $ - matches the end of the string
 
 Las propiedades de acceso estáticas RegExp.$1,…, RegExp.$9 devuelven coincidencias de subcadenas entre paréntesis.
 
+
+## Promesas
+
+### promise.all
+Promise.all se cumple cuando todas las promesas del iterable dado se han cumplido, o es rechazada si alguna promesa no se cumple.
+
+Promise.all Devuelve una promesa que se resuelve cuando todas las promesas en la matriz de entrada se han resuelto correctamente.
+Si alguna de las promesas se rechaza, la promesa devuelta se rechaza inmediatamente, con el primer motivo de rechazo.
+El orden de las promesas resueltas se conserva, siguiendo el orden de la matriz de entrada.
+
+Promise.allSettled():
+
+Devuelve una matriz de objetos, cada uno de los cuales representa el estado de una promesa en la matriz de entrada.
+Cada objeto contiene una propiedad de estado que indica si la promesa se resolvió ('cumplida') o se rechazó ('rechazada'), junto con una propiedad de valor que contiene el resultado (si se resolvió) o el motivo del rechazo (si se rechazó).
+El orden de los objetos en la matriz devuelta coincide con el orden de las promesas de entrada.
+
+Ejemplo:
+
+Suponga las promesas:
+```js
+const p1=(mensaje)=>{
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+            resolve(mensaje)
+        }, 4000);
+    })
+}
+const p2=(mensaje)=>{
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+            resolve(mensaje)
+        }, 4000);
+    })
+}
+const p3=(mensaje)=>{
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+            resolve(mensaje)
+        }, 4000);
+    })
+}
+const p4=(mensaje)=>{
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+            reject(mensaje)
+        }, 4000);
+    })
+}
+
+const promesas=[p1("Promesa 1"),p2("Promesa 2"),p3("Promesa 3"),p4("Promesa 4")]
+
+```
+Promise.all()
+```js
+Promise.all(promesas)
+.then(resp=>{
+    console.log("respuesta:",resp)
+})
+.catch(err=>{
+    console.log("Error:",err)
+})
+```
+Salida:
+si en la promesa 4 ejecuta el reject() como se muestra en el código:
+
+Error: Promesa 4
+
+Si en la prommesa 4 sustituye el reject por resolve()
+
+Salida:
+respuesta: [ 'Promesa 1', 'Promesa 2', 'Promesa 3', 'Promesa 4' ]
+
+
+Promise.allSettled()
+```js
+Promise.allSettled(promesas)
+.then(resp=>{
+    console.log("respuesta:",resp)
+})
+.catch(err=>{
+    console.log("Error:",err)
+})
+```
+
+Salida;
+```json
+respuesta: [
+  { status: 'fulfilled', value: 'Promesa 1' },
+  { status: 'fulfilled', value: 'Promesa 2' },
+  { status: 'fulfilled', value: 'Promesa 3' },
+  { status: 'rejected', reason: 'Promesa 4' }
+]
+
+```
 # Recursos
 
 ## instalar json-server SERVIDOR JSON LOCAL
@@ -241,27 +344,7 @@ http://localhost:3000/products/1
 # ejecutar json-server con npx
 npx json-server data.json -p 3000
 ```
-## crear proyectos
-usando modulos common js
-[crear proyectos con express](https://expressjs.com/es/starter/generator.html)
 
-## crar proyectos (ok)
-Para crear un proyecto node con express puede tambien usar el generador de proyectos:
-```sh
-#instaar el genrador de proyectos
-npm install -g express-generator@4
-# crear el proyectco por ejemplo con el motor de vsitas ejs
-express nodeServer --view=ejs
-cd nodeSerever
-npm install
-npm run start
-```
-con run start: node ./bin/www
-o: node --env-file=.env ./bin/www
-
-[Con express](https://www.npmjs.com/package/express)
-
-[Crear proyecto express](https://www.npmjs.com/package/express-create-app)
 
 ## extension para chrome
 
@@ -304,6 +387,67 @@ Descripción: node-windows es una biblioteca de Node.js que proporciona soporte 
 npm i node-windows
 
 ```
+
+## paquete moment
+
+biblioteca muy popular para manejar y manipular fechas y horas en Node.js.
+Aunque moment es muy útil, últimamente muchas personas han estado migrando a alternativas más ligeras como date-fns o dayjs, ya que moment se considera una biblioteca bastante pesada
+
+`npm install moment
+`
+```js
+const moment = require('moment');
+
+// Obtener la fecha y hora actual
+const now = moment();
+console.log(now.format('MMMM Do YYYY, h:mm:ss a')); // Ejemplo: October 14th 2024, 7:47 pm
+
+// Sumar y restar tiempo
+const futureDate = now.add(7, 'days');
+const pastDate = now.subtract(7, 'days');
+console.log(futureDate.format('MMMM Do YYYY'));
+console.log(pastDate.format('MMMM Do YYYY'));
+
+// Manipulación y formateo
+const customDate = moment('2024-12-25');
+console.log(customDate.format('dddd, MMMM Do YYYY')); // Ejemplo: Wednesday, December 25th 2024
+
+```
+
+## day.js Alternativa ligera a moment
+
+`npm install dayjs`
+
+```js
+const dayjs = require('dayjs');
+
+// Obtener la fecha y hora actual
+const now = dayjs();
+console.log(now.format('MMMM D, YYYY h:mm A')); // Ejemplo: October 14, 2024 7:48 PM
+
+// Sumar y restar tiempo
+const futureDate = now.add(7, 'day');
+const pastDate = now.subtract(7, 'day');
+console.log(futureDate.format('MMMM D, YYYY'));
+console.log(pastDate.format('MMMM D, YYYY'));
+
+// Manipulación y formateo
+const customDate = dayjs('2024-12-25');
+console.log(customDate.format('dddd, MMMM D, YYYY')); // Ejemplo: Wednesday, December 25, 2024
+
+```
+
+## temas prometedores por revisar
+
+[gridjs](https://gridjs.io/docs/config/pagination)
+[generar datos falsos](https://www.npmjs.com/package/@faker-js/faker)
+
+## generar datos falsos
+
+```sh
+npm install --save-dev @faker-js/faker
+```
+
 ## ligas
 [path](https://nodejs-es.github.io/api/path.html)
 
@@ -327,7 +471,7 @@ npm i node-windows
 
 [regex](https://dev.to/emilossola/mastering-regular-expressions-in-nodejs-a-comprehensive-guide-4hl5)
 
-[muy bueno](https://www.arkaitzgarro.com/javascript/capitulo-11.html)
+<!-- [muy bueno](https://www.arkaitzgarro.com/javascript/capitulo-11.html) -->
 
 [referencia sqlite3 español](https://www.digitalocean.com/community/tutorials/how-to-use-sqlite-with-node-js-on-ubuntu-22-04)
 

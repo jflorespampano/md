@@ -14,38 +14,60 @@
 
 
 ## Intrducción
-**Git** es un sistema de control de versiones distribuido muy utilizado en el desarrollo de software. Fue creado por Linus Torvalds y es conocido por su eficiencia, flexibilidad y capacidad para gestionar proyectos de cualquier tamaño.
+
+**Git** es un sistema de control de versiones muy utilizado en el desarrollo de software. Fue creado por Linus Torvalds y es conocido por su eficiencia, flexibilidad y capacidad para gestionar proyectos de cualquier tamaño.
 
 **Github** es un portal creado para alojar el código de las aplicaciones de cualquier desarrollador, y que fue comprada por Microsoft en junio del 2018. La plataforma está creada para que los desarrolladores suban el código de sus aplicaciones y herramientas, y que como usuario no sólo puedas descargarte la aplicación, sino también entrar a su perfil para leer sobre ella o colaborar con su desarrollo.
 
 git y github no son lo mismo, pero github utiliza git para gestionar sus proyectos. Básicamente usted lleva el control de sus versiones de proyecto con git y los respalda en la nube con github.
 
-En estas notas usaremos la consola de git (git bash), pero tambien puede ejecutar los comando usando Power Shell (PS), para abrir una ventna de bash de clic derecho sobre la carpeta de windows donde quiera trabajar y seleccione 'git bash here'.
-Praa abrir una ventanaa de Power Shell, sobre la carpeta que quiere trabajar presione a tecla 'shift' de clic derecho y seeccioen abrir PS. 
+En estas notas usaremos la consola de git (git bash o simpemente bash), pero tambien puede ejecutar los comando usando Power Shell (PS), Si ya teine instalado Git en su equipo; para abrir una ventna de bash dando clic derecho sobre la carpeta de windows donde quiera trabajar y seleccionando 'git bash here'.
+
+Praa abrir una ventanaa de Power Shell, sobre la carpeta que quiere trabajar presione a tecla 'shift' de clic derecho y seeccioen abrir PS. O seleccione la carpeta y en el menu archivo seleccione la opcion abrir PS.
 
 Git tiene 3 areas de trabajo:
-* working directori //mi directorio de trabajo
-* satagin area //archivos preparados para commit
-* git directory(repositorio) //archivos respaldados (commited)
+* working directory //mi directorio de trabajo
+* sataging area //archivos en escena, preparados para ser respaldados (para hacer commit)
+* git directory(repositorio) //archivos respaldados o comprometidos (commited), llamaremos respladados.
 
 ## 1 configuracion de git <a name="config"></a>
 
 Antes de empezar a trabajar con sus proyectos, debe cofigurar git para  que este enlazado con su cuenta de github, esto lo hará solo una vez al instalar git:
 
 ```sh
-# configurar su nombre de usuario y password que tiene en github
+# configurar su nombre de usuario y mail que tiene en github
 git config --global user.name "mi nombre en git hub"
 git config --global user.email "miemail@mail"
-#muestra la configuración actual
+# listo cargo sus credenciales.
+# por defecto git tiene asociado el editor vi, si desea puede configurar el editor para que use code
+# configurar editor
+git config --global core.editor "code --wait"
+# si lo desea muestre la configuración actual en el editor x defecto
 git config --global -e
 ```
 
-## 2 bajar desde git hub <a name="bajar_repo"></a>
+Comando editor VI, Por si lo necesita:
+```sh
+# comndos del editor vi
+# al entrar al editor vi entra en modo comando, puede moverse con las flechas en el texto y ejecutar comanddoa para:
+# editar buscar reemplazar NO puede modificar el texto en modo comando, para hacerlo debera ejecutar  el comado
+# i o el comando a que lo lleva a modo edicion, para salir de modo edicion preione tecla <esc>
+# comandos:  comando i o comando a. si presiona el comano x por ejemplo, borra la letra en el cursor
+# con el comando i entra a modo inserción
+i #insertar texto en la posicion actual - entra a modo edicion
+a #insertar texto despues de la posicion actual - entra  a modo edicion
+esc sale de edicion a modo comando
+# En modo comando:
+:wq guarda y sale del archivo
+:q! sale sin guardar
+```
+
+## 2 bajar repositorio(repo) desde git hub <a name="bajar_repo"></a>
 
 Si desea bajar un respositorio de github:
 
 ```sh
-#arrancar (git bash o ps) 
+#arrancar (git bash o power shell(ps)) 
 #crear carpeta proyecto
 mkdir proyecto
 cd proyecto
@@ -60,7 +82,9 @@ git pull origin main
 # listo ha bajado el proyecto
 # si el pryecto es nuestro y hacemos cambios en el en nuestro equipo y queremos subir los cambios al repo
 # creamos un commit
+# pasamos archivoss del derectorio de trajo al stagin area
 git add .
+# hacemos el commit (esto crea una version o un snap shot del proyecto)
 git commit -m "comentario"
 # actualizamos nuestro proyecto por si hubo cambios en el repo
 git pull origin main #por si hubo algun cambio en el remoto
@@ -72,7 +96,7 @@ git push origin main #cargar mis cambios al remoto
 Las tareas anteriores se pueden hacer con un solo comando de la siguiente forma:
 
 ```sh
-#lo anterior se puede abreviar clonando un remoto lo que deja inicializado el git y un repo del remoto ademas  crea una copia completa con todos sus commits
+#lo anterior se puede abreviar clonando un remoto, lo que deja inicializado el git y un repo del remoto ademas  crea una copia completa con todos sus commits
 #descarga (clona) un proyecto desde un repositorio
 git clone https://github... 
 
@@ -97,31 +121,50 @@ node_modules
 # ir a la carpeta del proyecto en el disco
 # abriendo directamente la carpeta con Power Shell (presiona shift + clic derecho/abrir power shell)
 # o abrir git bash sobre esa carpeta
-# crear un arcivo README.md si no existe
+# Opcional crear un arcivo README.md si no existe
 echo "# nodeServerBasico" >> README.md
 # inicializar proyecto
 git init
 git add .
 git commit -m "first commit"
-# cambiar nombre de rama a main
+# cambiar nombre de rama a main si no se llama así, puede ver el nombre de su rama en el prompt que muestra git
+# o ejecutando el comando 
+git log 
+# (esto le muestra los commit con el programa "less" si son muchos lo hara en páginas, al final muestra (end) 
+# para salir de ahi presione la letra q,
+# tambien puede mostra un resumen con
+git log --oneline
+# de ser necesario cambie el nombre de su rama a main
 git branch -M main
 # agregar el repositorio  remoto creado en github
 git remote add origin https://github.com/jflorespampano/minuevoRepo.git
 # subir el repositorio
 git push origin main
+# o git push -u origin main
 #listo
 
 # De hecho cuando crea un nuevo repo en github, el github le da la lista de comandos que tiene que ejecutar para subir su repo.
 
-#para subir nuevos camios de tu proyeto a tu remoto, hacer:
+# Resummen subir nuevos camios de tu proyeto a tu remoto, hacer:
+# crear tu proyecto
+# enlazar el remoto
+git remote add origin https://github.com/jflorespampano/minuevoRepo.git
+# agregar tu archivos al staging
 git add .
-git commit -m "commit con nuevos cambios"
+# respladar
+git commit -m "commit con mis cambios"
+# actualizar repo
 git pull origin main #actualiza tu proyecto por si hubo cambios en el remoto hechos por otro programador de tu equipo
+# subir proyecto
 git push origin main #respaldar tu proyecto en el remoto
 
 ```
 
+Puede usar el flag -u en `git push -u origin main` este, establece una relación de seguimiento entre tu rama local y la rama remota. Esencialmente, le dice a Git que la rama main en tu repositorio local debe rastrear la rama main en el repositorio remoto origin. Después de ejecutar este comando, podrás usar simplemente `git push` o `git pull` en lugar de especificar la rama y el origen cada vez, porque Git ya sabrá a qué rama y a qué remoto te refieres.
+
+
 ## 5 mas sobre remotos <a name="remotos"></a>
+
 ```sh
 git remote -v #muestra los remotos actuales
 git remote rm name #remueve un remoto
@@ -147,10 +190,8 @@ cat > archivo
 echo "# proyectoweb2" >> readme.md 
 #crea un archivo vacio, si son varios se separa por espacio
 touch [opciones] [nombre archivo(s)] 
-#editor vi
-i inserta
-esc sale de edicion
-:wq guarda y sale del archivo
+# ejemplo
+touch redme.md
 ```
 
 ## 6 trabajar con proyectos <a name="trabajar_proyectos"></a>
@@ -166,7 +207,7 @@ git diff archivo #muestra diferencias entre en del staging area y el actual
 git commit -m "mensaje"  #crea snapshot del proyecto (una versión)
 git log #muestra los snapshots existentes
 git log --oneline # con menos informacion
-git log --oneline --graph# con grafica
+git log --oneline --graph # con grafica
 git log --pretty=oneline #version compacta
 #o con información específica
 git log --pretty=format:"%h - %an, %ar : %s"
@@ -177,70 +218,144 @@ git checkout HEAD~1
 git checkout main #volver al estado actual
 ```
 
-### 7 Ejemplo revertir cambios <a name="recuperar_commit"></a>
+### less
+
+El programa less,  hace que la salida de git log sea desplazable. Escribe q, z o ctrl-z para salir de esta pantalla. Escribe h para obtener ayuda. Si no deseas leer la salida en un paginador y prefieres que se imprima directamente en la terminal, define la variable de entorno GIT_PAGER a cat o establece core.pager a cat.
+
+Esto lo puedes hacer editando el archivo de configuracion:
+
+```sh
+git config --global -e
+```
+y agregando la entrada pager del area core a cat:
+se verá así:
+
+```ini
+[user]
+	email = jflorespampano@gmail.com
+	name = Jesús Alejandro Flores Hernández
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[core]
+	editor = code --wait
+	pager = cat
+[init]
+	defaultBranch = main
+```
+
+Ya que estamos aqui, si notas la ultima entrada: **defaultBranch = main**, esto indica que al crear nuevos proyectos con git, la rama principal se llamara main.
+
+La entrada: **editor = code --wait** indica que el editor por defautl será VSCode.
+
+
+Fuente: https://www.iteramos.com/pregunta/14106/como-salir-del-registro-de-git
+
+## 7 Ejemplo revertir cambios <a name="recuperar_commit"></a>
 
 ### Recuperar un solo archivo a una veriosn anterior
 ```sh
 git log --oneline
 #suponga que el id de la version a la que quiere volver es 55df4c2
 git checkout 55df4c2 prueba.txt #recupera esa version del archivo
-git checkout -- NOMBRE-DEL-ARCHIVO #revertirá el archivo a la versión en HEAD
+git checkout -- NOMBRE-DEL-ARCHIVO #revertirá el archivo a la versión en HEAD(commit mas reciente)
 ```
 Una opcion mejor que la anterior es usar el nuevo comando git restore.
 
 ### Git restore
+
 El git restore es una nueva opción cuando estamos trabajando y necesitamos restaurar algún archivo o el proyecto por completo , y eso es lo que git checkout también tiene, pero el git restore es especificamente para trabajar con esta parte de restauración de archivos o proyectos en un punto anterior que llamamos de fuente de restauración(source).
 
 ```sh
 
-git restore prueba.txt #recupera del ultimo commit
-git restore . #deshacer toidos los cambios 
+git restore prueba.txt #recupera del ultimo commit (HEAD)
+git restore . #deshacer todos los cambios 
 #para recuperar del staging area
 git restore --staged archivo
 #recuperar del historial
 git restore a.txt --source f544960 #a.txt es restaurado al estado que tenía en el commit f544960
+# Restaurar el proyecto
 #ejemplo, supanga que tiene el commit con id:c776f0cdefd3c6e05165feecbfe6d6a484436f16
 #restaurar el proyecto a ese commit sería
 git checkout c776f0cdefd3c6e05165feecbfe6d6a484436f16
 #seria asi con git restore:
 git restore --source c776f0cdefd3c6e05165feecbfe6d6a484436f16
 ```
-### Recuperar todo
+### Recuperar todo el proyecto a una version previa
+
 Primera forma de regrasar a una version anterior:
 Si lo que se desea es eliminar permanentemente los cambios realizado después de un commit  específico, el comando a usar es:
 ```sh
 git reset --hard id-del-snapshot # por ejempo: git reset --hard 55df4c2
 #o deshacer solo el ultimo cambio
-git reset —-hard HEAD~
+git reset --hard HEAD~
 ```
-**Nota** No deberías utilizar nunca git reset si cualquier instantánea posterior a se ha enviado a un repositorio público. Después de publicar una confirmación, tienes que dar por sentado que el resto de los desarrolladores dependen de ella.
+**Nota** No deberías utilizar nunca git reset si cualquier instantánea posterior ya se ha enviado a un repositorio público. Después de publicar una confirmación, tienes que dar por sentado que el resto de los desarrolladores dependen de ella.
 
+**Nota** gir reset elimina permanentemente los commit posteriores al punto que regresamos.
 
+### git revert
 
+Una mejor opcion es git revert que guardará un historial de cambios.
+
+El comando git revert se utiliza para deshacer cambios en el historial de confirmaciones de un repositorio. Otros comandos de 'deshacer' como git checkout y git reset, mueven los punteros HEAD y rama ref a una confirmación específica. Git revert también toma una confirmación específica; sin embargo, git revert no mueve los punteros de referencia a esta confirmación. Una operación de reversión tomará la confirmación especificada, invertirá los cambios de esa confirmación y creará una nueva "reversión de confirmación". Luego, los punteros de referencia se actualizan para apuntar al nuevo compromiso de reversión, convirtiéndolo en la punta de la rama.
+
+`git revert HEAD~2 # esto nos pondrá en un editor de texto en donde podemos modificar el mensaje del commit.`
+
+ejemplo:
+```sh
+#mostramos commit
+git log --oneline # con menos informacion
+git log --oneline --graph # con grafica
+git revert HEAD # revert al commit anterior
+
+#ejemplo regresar a un commit cualquiera
+git revert a1e8fb5
+# si hay conflictos abrira el editor con el archivo en conflicto
+# haga los cambios pertinentes en el editor
+git add archivo #agregue el archivo ya corregido o eliminelo con git rm archivo
+# ejecute
+git revert --continue
+# ponga el mensaje del commit en su editor y cierre el archivo
+# ¡Listo!
+# una opcion es que despues de hacer git add archivo haga:
+git commit -m "mensaje del nuevo commit"
+```
 ### Otra forma de regresar
+
 Suponga que esta trabajando y ha hecho 5 commit donde estuvo probando un código que al final no sale bien y su proyecto ha dejado de funcionar, entonces quiere regresar a una versión segura, hasta un punto antes de probar ese código que salió mal.
 ```sh
 #mostramos instantaneas 
 git log --oneline
 # suponga que tiene estos snapshot
-#b7119f2 continuar probando y sale mal
-#872fa7e empiezo a probar un nuevo codigo
-#a1e8fb5 hacer cambios importantes en hello.txt
-#435b61d creando hello.txt
-#9773e52 iniciando
-# suponga que quiere revertir hasta a1e8fb5
+#b7119f2 continuar probando y sale mal agregar "codigo FALLO"
+#872fa7e empiezo a probar un nuevo codigo agregar "codigo nuevo"
+#a1e8fb5 hacer cambios importantes en hello.txt "codigo importante"
+#435b61d agregando a hello.txt el texto "codigo 1"
+#9773e52 creaado hello.txt con el texto "iniciando"
+#suponga que quiere revertir hasta "cambios importantes" a1e8fb5
 #vamos a esa instantanea
 git checkout a1e8fb5
 git show a1e8fb5 #muestra los datos del snpashot por se desea verlos
+#Estás en el estado 'HEAD separado'. Puedes mirar alrededor, hacer cambios experimentales y hacerles commit, y puedes descartar cualquier confirmación que hagas en este estado sin afectar a ninguna rama volviendo a una rama.
+
 # si desea hacer cambios, necesitará 
-# hacer los cambios y sacar instantanea con los cambios
-git add .
-git commit -m "mensaje"
+  # hacer los cambios y sacar instantanea con los cambios
+  git add .
+  git commit -m "mensaje"
+# o si no quiere hacer cambios 
+  #solo recuperar lo que tenia en esa instantanea lo que  hizo arriba con: git checkout a1e8fb5
+# fin de si
 # a continuación crear una nueva rama con los nuevos cambios
-# o si no quiere hacer cambios solo recuperar lo que tenia en esa instantanea
-# crea la nueva rama sin hacer cambios ni el add . ni el commit anterior
-# crea la nueva rama
-git checkout -b ramanueva
+# forma 1:
+# Si quieres crear una nueva rama para conservar las confirmaciones que creas, usando -c con el comando switch. Ejemplo:
+
+ git switch -c ramanueva
+# forma 2:
+ git checkout -b ramanueva
+# fin de forma
 #para volver al estado actual
 git checkout main
 #tal vez quiera eliminar la rama main y quedarse con la nueva
@@ -254,31 +369,30 @@ git branch -m main
 
 ```
 
-### git revert
-
-El comando git revert se utiliza para deshacer cambios en el historial de confirmaciones de un repositorio. Otros comandos de 'deshacer' como git checkout y git reset, mueven los punteros HEAD y rama ref a una confirmación específica. Git revert también toma una confirmación específica; sin embargo, git revert no mueve los punteros de referencia a esta confirmación. Una operación de reversión tomará la confirmación especificada, invertirá los cambios de esa confirmación y creará una nueva "reversión de confirmación". Luego, los punteros de referencia se actualizan para apuntar al nuevo compromiso de reversión, convirtiéndolo en la punta de la rama.
-
-`git revert HEAD~2 # esto nos pondrá en un editor de texto en donde podemos modificar el mensaje del commit.`
 
 ## 8 Ramas <a name="ramas"></a>
 ```sh
 git branch #en que versión /rama te encuentras
 git branch --list #muestra las ramas
 git checkout -b nueva rama #crea una nueva rama y cambia a ella
+git branch -m nueva rama #crea nueva rama
+git switch -c nueva rama #crea nueva rama y cambia a ella
 git switch -  #alterna entre las dos ultimas ramas
 git checkout rama  # cambia a esa rama
-git branch -m new-name #crea nueva rama
+git switch rama
+
 ```
 
 ## 9 fusionar rama <a name="fusionar_rama"></a>
 ```sh
-# merge fusiona tu rama con la rama master
+# merge fusiona tu rama con la rama master/main
 # recomendacion antes:
-# git checkout master 'cambiar a la rama master
+# git checkout master 'cambiar a la rama master/main
 # git fetch 'actualiza tu rama del remoto si es el caso
-# ahora si
+# ahora si estando en la rama master/main
 git merge rama-a-fusuionar
-
+# ¡listo!
+# Eliminar rama
 git branch -d rama # elimina una rama
 # antes de cambiar de rama debes guardar los cambios de la rama actual
 # basicamente hacer git add . y git commit -m "mensaje"

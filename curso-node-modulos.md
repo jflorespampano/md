@@ -1,12 +1,11 @@
 # modulos 
 
-Los módulos son la forma en que organizamos nuestro proyecto en diferetes archivos, un nódulo es simplemente un archvo con extensión .js (tambien puede ser extensiones .mjs o .cjs).
+Los módulos son la forma en que organizamos nuestro proyecto en diferetes archivos, un módulo es simplemente un archvo con extensión .js (tambien puede ser extensiones .mjs o .cjs).
 
-Existen 2 formas de trabajar con modulos en node, un modulo es un archivo con código js que puede exportar elementos tales como funciones, clases y objetos.
-Las dos formas son:
+Un modulo es un archivo con código js que puede exportar elementos tales como funciones, clases y objetos. Existen 2 formas de trabajar con modulos en node, Las dos formas son:
 
-1. CommonJS que usa la sentencia **require** para importar, module.exports={} para exportar,  archivos con extencion js (o cjs)
-2. ESM (ecma script module) que usan la sentencia **import** ara importar, export {}/export default funcion, archivos con extencion mjs
+1. CommonJS que usa la sentencia **const id=require('archivo.cjs')** para importar, y **module.exports={}** para exportar, requiere archivos con extencion js (o cjs)
+2. ESM (Ecma Script Module) que usa la sentencia **import id from 'archivo.mjs'** para importar, y **export {}/export default funcion** para exportar, archivos con extencion mjs
 
 **Nota CommonJS (es el que usa node por defecto)**
 
@@ -14,13 +13,12 @@ Las dos formas son:
 
 Por ejemplo creamos el modulo: operaciones
 
-Archivo:operaciones.js
+Archivo:**operaciones.js**
 ```js
 const suma=(n1,n2)=> n1+n2
 const resta=(n1,n2)=> n1-n2
 const multiplicacion=(n1,n2)=> n1*n2
 const division=(n1,n2)=> n1/n2
-console.log(module) //muestra lo que module contiene
 module.exports={suma, resta, multiplicacion, division}
 ```
 
@@ -28,38 +26,37 @@ En el archivo **main.js**
 ```js
 //importar el modulo
 const operaciones = require('./operaciones.cjs')
-
 console.log(operaciones.suma(2,3))
 ```
 
-**Nota: Con require se puede importar json, el archivo json no debera tener module.exports**
+**Nota**: Con require se puede importar un archivo json, el archivo json no deberá tener module.exports
 
-## Usar commonjs 
+## Usar commonjs en un proyecto
 
-Se puede definir en el proyecto el tipo de modulos a usar (commonjs o esm) de dos formas, en el archivo package.json (creado con el comando npm init):
+Se puede definir en el proyecto el tipo de modulos a usar (commonjs o esm), en el archivo package.json (creado con el comando npm init):
 
 * para definir que se usará Commonjs, en el archivo package.json, no poner nada o poner la entrada: 
 **"type":"commonjs"**
 * para usar modulos de tipo ESM poner la entrada: 
 **"type":"module"**
 
-## Mmodulos ESM (Ecma Script module)
+## Modulos ESM (Ecma Script Module)
 
 Para usar el sistema module ESM, los archivos tendran la extension .mjs o pueden tener extencion .js y tener la entrada "type":"module" en el package.json.
 
 ### Exportar/importar en ESM:
 
-Archivo: operaaciones.mjs
+Archivo: operaciones.mjs
 ```js
-const suma=(n1,n2)=> {return n1+n2}
-const resta=(n1,n2)=> {return n1-n2}
-const multiplicacion=(n1,n2)=> {return n1*n2}
-const division=(n1,n2)=> {return n1/n2}
+const suma=(n1,n2)=> n1+n2
+const resta=(n1,n2)=> n1-n2
+const multiplicacion=(n1,n2)=> n1*n2
+const division=(n1,n2)=> n1/n2
 
 export {suma, resta, multiplicacion, division}
 export default suma
 ```
-Otra forma de escribir el archivo operaciones.mjs
+Otra forma de escribir un archivo operaciones.mjs
 ```js
 export const data=[
     {name:"ana"},
@@ -68,32 +65,25 @@ export const data=[
     {name:"sergio"},
     {name:"rosa"}
 ]
-export const suma=(n1,n2)=> {
-    return n1+n2
-}
-export const resta=(n1,n2)=> {
-    return n1-n2
-}
-export const multiplicacion=(n1,n2)=> {
-    return n1*n2
-}
-export const division=(n1,n2)=> {
-    return n1/n2
-}
+export const suma=(n1,n2)=>  n1+n2
+export const resta=(n1,n2)=> n1-n2
+export const multiplicacion=(n1,n2)=> n1*n2
+export const division=(n1,n2)=> n1/n2
 export default suma
 ```
+Para importarlo
 
 en el main.js
 ```js
 //importar desestructurando
 import {suma, resta, multiplicacion, division} from './operacines.mjs'
-// y usar suma(_,_)
+// y llamar así: suma(_,_)
 //o importar el default
 import suma from './operacines.mjs'
-// y usar suma(_,_)
+// y llamar así: suma(_,_)
 //o
 import * as operaciones from './operacines.mjs'
-// y usar aoperaciones.suma(_,_)
+// y llamar así: operaciones.suma(_,_)
 ```
 
 ## Resumen de sintaxis de ESM
@@ -109,23 +99,66 @@ import * as operaciones from './operacines.mjs'
 
 ## Cambios según el tipo de modulos
 
-En commonjs puede usar __dirname, __filename, tambien importar archivos json
+### En common js
+En commonjs puede usar las variables predefiniidas: __dirname, __filename. __filename contiene el nombre del archivo en ejecución con su ruta absoluta, __dirname contiene solo la ruta.
+
+```js
+console.log(__dirname);
+console.log(__filename);
+```
+
+###  En ESM
 
 En ESM no se puede importar archivos json, tampoco se puede usar el __dirname, ni el __filename.
 Para hacerlo, hay que saber que el import es un objeto:
 
-console.log(import.meta.url)
+import.meta.url es una propiedad del objeto import.meta en Node.js, que devuelve la URL del archivo del módulo actual. Esta propiedad forma parte de la especificación ECMAScript para módulos y está implementada en Node.js.
 
-Usar __dirname, __filename en ESM
+El método fileURLToPath en Node.js es parte de la clase URL, que se utiliza para convertir una cadena de URL de archivo o un objeto URL en una ruta codificada correctamente. Este método garantiza que los caracteres codificados en porcentaje se decodifiquen de manera absoluta y que la ruta resultante sea válida en todas las plataformas.
+
+
+Crear las variabes __dirname, __filename en ESM
 ```js
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import * as url from 'url';
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const __filename = fileURLToPath(import.meta.url);
+console.log("path",__dirname)
+console.log("file",__filename)
+```
 
-console.log("🚀 ~ file: index.js:9 ~ __filename:", __filename)
-console.log("🚀 ~ file: index.js:10 ~ __dirname:", __dirname)
+### Uso  de cwd()
+
+process.cwd() es un método de Node.js que devuelve el directorio de trabajo actual del proceso de Node.js. Proporciona la ruta absoluta del directorio desde el que se inició el proceso de Node.js. Este directorio se suele denominar “directorio de trabajo actual” o “CWD” "Current Work Directory"
+
+```js
+process.cwd() //devuelve el directorio de trabajo corriente del proceso de Node.js
+```
+La diferencia con __dirname y cwd() es que __dirname devuelve el directorio del archivo actual en ejecución y cwd() devuelve el directorio de inicio del proyecto. 
+
+### Usar path.join()
+
+Para construir rutas y unir todos los segmentos empleando el separador específico de la plataforma, utilizamos el método join. Este método no solo une los segmentos, sino que también normaliza el resultado según la plataforma en la que se esté ejecutando el código. join se encarga de manejar los detalles específicos de la plataforma, asegurando que la ruta resultante sea coherente y compatible independientemente del sistema operativo.
+
+En ESM
+```js
+import {join} from 'node:path'
+const mipath=join(process.cwd(),'js')
+console.log("mi path:",mipath)
+```
+
+Otra forma:
+```js
+import path from 'node:path'
+const mipath=path.join(process.cwd(),'js')
+console.log("Mi path:",mipath)
+```
+
+En Common module
+```js
+const path = require('path');
+const joinedPath = path.join('/foo', 'bar', 'baz/asdf');
+console.log(joinedPath); // Output: "/foo/bar/baz/asdf"
 ```
 
 ## usar commonjs desde ESM (Ecma Script Module)

@@ -18,7 +18,7 @@ SQLiteStudio es una aplicación de escritorio para explorar y editar archivos de
 
 1. [sqlite admin](https://sqliteadmin.orbmu2k.de/)
 2. [**ok** un db manager para sqlite](https://sqlitestudio.pl/)
-3. [un db manager para sqlite](https://sqlitebrowser.org/dl/)
+3. [**ok** un db manager para sqlite](https://sqlitebrowser.org/dl/)
 
 **Nota para HeidiSql** tiene un bug en el AUTOINCREMENT en el HeidiSql al usarlo con SQLite
 
