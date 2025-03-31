@@ -20,7 +20,7 @@ SQLiteStudio es una aplicación de escritorio para explorar y editar archivos de
 2. [**ok** un db manager para sqlite](https://sqlitestudio.pl/)
 3. [**ok** un db manager para sqlite](https://sqlitebrowser.org/dl/)
 
-**Nota para HeidiSql** tiene un bug en el AUTOINCREMENT en el HeidiSql al usarlo con SQLite
+**Nota HeidiSql** tiene un bug en el AUTOINCREMENT en el HeidiSql al usarlo con SQLite
 
 # SQLITE Cli
 
@@ -32,13 +32,14 @@ sqlite-tools-win32-x86-3410000
 [Descargar](https://sqlite.org/download.html)
 [referencia](https://sqlite.org/cli.html)
 
-Ejecutar el archivo: 'sqlite3.exe', cuado ejecuta este programa, si pone como primmer parametro el nombre de un archivo, si el archivo con ese nombre no existe, se crea una nueva base de datos sqlite con ese nombre, si existe se abre, si no pone nombre se crea un archivo temporal que se borra cuando salimos del programa.
+**Nota** Ejecutar el archivo: 'sqlite3.exe', cuado ejecuta este programa; si pone como primer parametro el nombre de un archivo, se abre, si el archivo no existe, se crea una nueva base de datos sqlite con ese nombre,  si no pone nombre se crea un archivo temporal que se borra cuando salimos del programa.
 
 * Ejecutar sqlite3
 
 ```sh
 //Ejecutar sqlite 3
 $ sqlite3
+$ sqlite3 personas.db
 //cambiar directorio de trabajo
 .cd c:/trabajo 
 //abrir base de datos
@@ -57,8 +58,7 @@ salir de sqlite3
 .quit
 ```
 
-Ejemplo de crear tablas:
-sqlite3 personas.db
+
 
 ```sh
 #salir
@@ -72,8 +72,9 @@ create table personas(
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
     nombre text
 );
+```
 
-Eejmplo crear y poblar bae de datos:
+Ejemplo crear y poblar bae de datos:
 ```sh
 $ sqlite3 ex1
 SQLite version 3.36.0 2021-06-18 18:36:39
@@ -96,12 +97,15 @@ sqlite> CREATE TABLE tbl2 (
 sqlite>
 ```
 
-#otro ejemplo
+## otro ejemplo
 
-#mostrar datos
+mostrar datos
+```sql
 select * from personas;
+```
 
-#o mostrar en columnas
+o mostrar en columnas
+```sh
 .mode column
 select * from personas;
 ```

@@ -1,0 +1,80 @@
+## excalidraw pizarra virtuaal
+
+[Excalidraw](https://excalidraw.com/)
+
+## css
+
+[probar css](https://codi.link/%7C%7C)
+
+[calculador de especificidad] (https://specificity.keegan.st/)
+
+[manz](https://lenguajecss.com/)
+
+[web.dev aprender css](https://web.dev/learn/css?hl=es)
+
+[css](https://developer.mozilla.org/es/docs/Web/CSS)
+
+[z-index](https://web.dev/learn/css/z-index?hl=es)
+
+[retors css](https://www.frontendmentor.io/)
+
+## color piker
+
+[color p](https://www.w3schools.com/colors/colors_picker.asp)
+
+[image color piker](https://imagecolorpicker.com/)
+
+[color piker](https://rgbcolorpicker.com/)
+
+[oklch](https://oklch.com/#70,0.1,89,100)
+
+## react
+en el archivo: .eslint.cjs
+en la entrada:
+```json
+rules: {
+    'react/jsx-no-target-blank': 'off',
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+    "react/prop-types":"off",
+  },
+```
+poner la linea: "react/prop-types":"off",
+para que eslint no marque advertencias por la falta de descripcion de tipos
+
+
+## iconos Bootstrap
+
+[iconos](https://icons.getbootstrap.com/?q=clos)
+
+## imagenes svg
+
+[gallery](https://pixels.market/)
+
+[fotografias](https://unsplash.com/documentation)
+
+## vscode
+ctr-sift-L selecciona todas las ocurrencias del texto seleccionado
+shift-alt-f formatear texto seleccionado/todo el archivo, con linter/prottier
+
+## box-sizing
+
+Poner border-box para que el tamaño de la caja sea el que se pone en width y height
+```css
+box-sizing: content-box/border-box;
+```
+
+### CSS en lugar de usar el border usar outline, para no afectar las dimenciones del elemento:
+
+```css
+  outline: 3px solid red;
+```
+
+Probar:
+```css
+ input:focus{
+  outline:1px solid yellow;
+ }
+```

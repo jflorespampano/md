@@ -127,5 +127,31 @@ vue create proyecto
 vue add router
 ```
 
+## vue con bun
+
+[bun vue](https://bun.sh/guides/ecosystem/vite)
+```sh
+bun create vite my-app
+cd my-app
+bun install
+# Start the development server with the vite CLI using bunx.
+bunx --bun vite
+# 
+```
+To simplify this command, update the "dev" script in package.json to the following.
+
+```sh
+"scripts": {
+  "dev": "vite", #eliminar
+  "dev": "bunx --bun vite", #agregar
+  "build": "vite build",
+  "serve": "vite preview"
+},
+// Now you can start the development server with bun run dev.
+bun run dev
+// The following command will build your app for production.
+bunx --bun vite build
+```
+
 # Ejemplo de serrvidor node
 [ejemplo node cors](https://bluuweb.github.io/mevn/01-primeros-pasos/#instalar-cors-middleware)

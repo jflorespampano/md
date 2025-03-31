@@ -2,9 +2,11 @@
 
 ## Instalar node
 
-Debe tener instalado node js. Para saber si lo tiene instalado, en una carpeta, abra una ventana de power shell (shift+clic derecho / clic en: abrir ps aquí) o una ventana de bash.
+Debe tener instalado node js. Para saber si lo tiene instalado, en una carpeta, abra una ventana de power shell/cmd/bash
 
-ponga el comando:
+Nota; si puede abrir una ventana de comando así: (shift+clic derecho / clic en: abrir ps aquí) o una ventana de bash (clic derecho/open git bash here) o vaya a su carpeta en el explorador de archivos de windows y en su barra de ruta ponga (cmd) o seleccione su carpeta y en el menu archivos de su explorador de archivos y seleccione (abrir windows power shell).
+
+en su ventana de comandos ponga el comando:
 
 ```js
 node --version
@@ -156,6 +158,27 @@ console.log(process.env.DB_PLATFORM)
 Es como un nodemon nativo:
 
 ```js
+node --watch index.js
+```
+
+## vriables de entorno a partir de la version 22.10
+
+[ver:](https://nodejs.org/en/blog/release/v22.10.0)
+
+Las variables de .env se cargan directamente sin necesidad de una biblioteca
+
+archivo .env
+```
+PORT=3000
+```
+
+Archivo: index.js
+```js
+process.LoadEnvFile()
+console.log(process.env.PORT)
+```
+Ya esta estable:
+```sh
 node --watch index.js
 ```
 
@@ -448,7 +471,150 @@ console.log(customDate.format('dddd, MMMM D, YYYY')); // Ejemplo: Wednesday, Dec
 npm install --save-dev @faker-js/faker
 ```
 
+## fnm administraador de versiones de node
+
+El comando fnm (Fast Node Manager) es un administrador de versiones de Node.js que se destaca por su velocidad y simplicidad1
+. Está construido en Rust, lo que le permite ser muy eficiente
+. Aquí tienes algunos comandos básicos para usar fnm:
+
+Instalarlo:
+```sh
+curl -fsSL https://fnm.vercel.app/install | bash
+# o
+curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+```
+Probe el primero y funcionó.
+
+Para usarlo:
+Agrega fnm a tu shell profile: Si estás usando bash, asegurate que esto esta agregado esto al final de tu archivo .bashrc:
+.bashhrc esta en la carpeta: C:\Users\jflor
+
+Para bash:
+```sh
+export PATH=$HOME/.fnm:$PATH
+eval "$(fnm env)"
+
+```
+
+Revise y al instalar con curl, el archivo: .bashhrc (ver nota) ya tenia esto:
+```sh
+# fnm
+FNM_PATH="/c/Users/jflor/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+```
+Nota tuve que crear el archivo: .bash_profile en la carpeta raiz del gitBash:
+```sh
+ir a la raiz de gitbash
+cd ~/
+```
+Si tienes una configuración previa de .bashrc en tu directorio de usuario, puedes incluir los alias y configuraciones allí en lugar de .bash_profile. Sin embargo, .bash_profile es recomendado como ubicación principal para configuraciones de Bash en Windows.
+
+```sh
+# recarga tu shell si acabas de instalar:
+source ~/.bashrc
+# prueba
+fnm --version
+# instalar una version especcífica
+fnm install 14.17.0
+# mostrar las versiones instaladas 
+fnm list
+# instala la ultima version lts
+fnm install --lts
+# cambiar a una version específica
+fnm use 14.17.0
+# usar una versión específica:
+fnm use 14.17.0
+# pone version de default
+fnm default version
+# eliminar una versión específica
+fnm uninstall 14.17.0
+```
+
+## fnm en power shell
+
+Verifica que PowerShell admite winget ejecutando el comando winget --version. Si no lo admite, puedes instalarlo fnm desde el Microsoft Store
+
+```sh
+# installs fnm (Fast Node Manager)
+winget install Schniz.fnm
+
+# configure fnm environment
+fnm env --use-on-cd | Out-String | Invoke-Expression
+
+# download and install Node.js
+fnm use --install-if-missing 20
+
+# verifies the right Node.js version is in the environment
+node -v # should print `v20.18.0`
+
+# verifies the right npm version is in the environment
+npm -v # should print `10.8.2`
+```
+
+## playground
+
+[jsplayground](https://www.jsplayground.dev/)
+
+[jsoncrack](https://jsoncrack.com/)
+
+[omatsuri](https://omatsuri.app/)
+
+[responsively](https://responsively.app/)
+
+## bun
+
+Crear proyecto vanilla js
+
+```sh
+bun create vanilla
+# pej instalar express
+bun install express
+# ejecutar
+bun run dev
+```
+
+## pm2
+
+[pm2](https://tecnonucleous.com/2018/03/28/usar-pm2-para-mantener-el-bot-de-telegram-encendido/)
+
+[instalar](https://www.npmjs.com/package/pm2)
+
+```sh
+npm install pm2 -g
+pm2 list
+pm2 start server.js --name alias
+pm2 stop alias
+pm2 stop serer.js
+pm2 stop id
+pm2 startup
+```
+
+Nota:
+Sistema de inicio PM2 no encontrado
+PM2, un popular administrador de procesos para aplicaciones Node.js, no es compatible con el sistema de inicio en Windows 10. Esto se debe a que Windows utiliza un sistema de administración de servicios diferente al de Linux, donde PM2 está diseñado para integrarse con el sistema de inicio (por ejemplo, systemd, init.d).
+
+En Windows, PM2 ofrece soluciones alternativas para administrar e iniciar sus aplicaciones Node.js:
+
+Servicio de Windows PM2: puede instalar PM2 como un servicio de Windows mediante pm2-windows-service. Esto le permite administrar PM2 y sus aplicaciones mediante el Administrador de servicios de Windows. Siga las instrucciones de la documentación de PM2 para instalar y configurar el servicio de Windows PM2.
+Scripts de inicio: puede crear scripts de inicio personalizados mediante pm2 startup y pm2 stop. Estos scripts se pueden ejecutar manualmente o programar mediante el Programador de tareas de Windows. Consulte la documentación de PM2 para obtener más información.
+Bibliotecas de terceros: hay bibliotecas de terceros disponibles, como pm2-logrotate y pm2-windows-startup, que brindan funciones adicionales e integración con Windows. Puede instalar estas bibliotecas mediante npm y configurarlas de acuerdo con su documentación.
+En resumen, PM2 no admite el sistema init en Windows 10. En su lugar, puede usar el servicio de Windows de PM2, scripts de inicio personalizados o bibliotecas de terceros para administrar e iniciar sus aplicaciones Node.js en Windows.
+
+## varios
+
+[instalar](https://bun.sh/)
+
+[notas bun](https://www.freecodecamp.org/espanol/news/un-vistazo-rapido-a-bun-1-0-una-alternativa-a-node-js/)
+
 ## ligas
+
+[datos falsos](https://gorest.co.in/)
+
+[Ejeemplo manejo de xml](https://blog.logrocket.com/reading-writing-xml-node-js/)
+
 [path](https://nodejs-es.github.io/api/path.html)
 
 [documentacion pm2](https://pm2.keymetrics.io/docs/usage/quick-start/)

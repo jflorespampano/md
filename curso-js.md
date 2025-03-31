@@ -8,6 +8,13 @@
 7. [inmutabilidad](#inmutabilidad)
 8. [funciones puras](#funciones_puras)
 
+# Notas
+
+PascalCase
+camelCase
+snake_case
+kebab-case
+
 # JS <a name="js"></a>
 
 JavaScript (JS) es un lenguaje de programación ligero, interpretado, JavaScript es un lenguaje de programación basada en prototipos, multiparadigma, de un solo hilo, dinámico, con soporte para programación orientada a objetos, imperativa y declarativa (por ejemplo programación funcional). (MDNWeb Docs)
@@ -423,7 +430,7 @@ var arr = [
 ```js
 let name = obj.name ?? 'default name';
 ```
-El ?? El operador devolverá el lado izquierdo si no es nulo (es decir, nulo o indefinido), de lo contrario, devolverá el lado derecho. Entonces, en el ejemplo anterior, si obj.name no es nulo o indefinido, el nombre se establecerá en obj.name . Pero si obj.name es nulo o indefinido, el nombre será 'nombre predeterminado'.
+El operador ?? devolverá el lado izquierdo si no es nulo (es decir, nulo o indefinido), de lo contrario, devolverá el lado derecho. Entonces, en el ejemplo anterior, si obj.name no es nulo o indefinido, el nombre se establecerá en obj.name . Pero si obj.name es nulo o indefinido, el nombre será 'nombre predeterminado'.
 
 ## inmutabilidad en funciones que manejan objetos <a name="inmutabilidad en funciones que manejan objetos"></a>
 
@@ -766,5 +773,49 @@ class Leon extends Gato {
 
 ```
 
+### clases abstractas
+
+```js
+class Persona{
+  #id
+  #nombre
+  #correo
+  constructor(id='',nombre='',correo=''){
+    if(new.target === Persona){
+      throw new Error("No se puede instancia esta clase")
+    }
+    this.id=id
+    this.nombre=nombre
+    this.correo=correo
+  }
+  muestra(){
+    throw new Error("Este método debe ser implementado")
+  }
+}
+class alumno extends Persona{
+  muestra(){
+    console.log(`id:${this.id}, nombre:${this.nombre}, correo:${this.correo}`)
+  }
+}
+
+const p=new alumno(1,'ana','@mail')
+p.muestra()
+```
+
+
+## colores
+
+```js
+//salida e rojo
+console.log(`\x1b[31m${error.message}\x1b[0m`)
+console.log("\x1b[30m%s\x1b[0m", "Texto Negro"); 
+console.log("\x1b[31m%s\x1b[0m", "Texto Rojo"); 
+console.log("\x1b[32m%s\x1b[0m", "Texto Verde"); 
+console.log("\x1b[33m%s\x1b[0m", "Texto Amarillo"); 
+console.log("\x1b[34m%s\x1b[0m", "Texto Azul"); 
+console.log("\x1b[35m%s\x1b[0m", "Texto Magenta");
+console.log("\x1b[36m%s\x1b[0m", "Texto Cian"); 
+console.log("\x1b[37m%s\x1b[0m", "Texto Blanco");
+```
 ## referencias
 [clases](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Classes)

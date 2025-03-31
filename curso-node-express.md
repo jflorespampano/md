@@ -200,7 +200,7 @@ app.listen(PORT,()=>{
 })
 ```
 
-## manejo de rutas de directorio path
+## manejo de directorio path
 
 process.cwd() es un método de Node.js que devuelve el directorio de trabajo actual del proceso de Node.js. Proporciona la ruta absoluta del directorio desde el que se inició el proceso de Node.js. Este directorio se suele denominar “directorio de trabajo actual” o “CWD”
 
@@ -233,7 +233,20 @@ npm run start
 con run start: node ./bin/www
 o: node --env-file=.env ./bin/www
 
+Se recomienda vite
 
+## cors
+
+```js
+import cors from 'cors'
+const corsOptions={
+    origin:"http://127.0.0.1:5173", //especificar algun origen
+    methods:["POST","GET"],
+    credentials: true //allow sending credentials (cookies, authentication)
+}
+
+app.use(cors(corsOptions))
+```
 # refs
 
 [Con express](https://www.npmjs.com/package/express)

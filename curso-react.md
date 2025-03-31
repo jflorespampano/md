@@ -2,7 +2,7 @@
 
 React es una biblioteca JavaScript de código abierto, basada en componentes, para construir interfaces de usuario rápidas y dinámicas.
 
-Para usar React debe tener instalado node js. Para saber si lo tiene instalado, en una carpeta, abre una ventana de power shell(ps) usa las teclas: (shift+clic derecho / clic en abrir ps aquí).
+Para usar React debe tener instalado node js. Para saber si lo tiene instalado, en una carpeta abre una ventana de power shell(ps) usa las teclas: (shift+clic derecho / clic en abrir ps aquí).
 
 Escribe el comando:
 
@@ -11,7 +11,7 @@ node --version
 ```
 Si no reconoce el comando, instale **node** desde: [Download Node](https://nodejs.org/en/download)
 
-Con node se descarga la aplicación **npm** (node package manager) manejador de paquetes de node (un paquete es una biblioteca de node), esta aplicacion la que usaremos para crear proyectos en React.
+Con node se descarga la aplicación **npm** (node package manager) manejador de paquetes de node (un paquete es una biblioteca de node), esta aplicacion se puede usar para crear proyectos en React.
 
 ## Vite
 
@@ -28,7 +28,7 @@ Con Vite puede crear proyectos para varias plantillas de desarrollo (Vanilla, Vu
 
 Crear proyecto con vite+react, en la consola:
 ```sh
-# abrir la consola de Power Shell
+# abrir la consola de Power Shell con el comando:
 # shift+clic derecho/seleccionar - abrir ventana de power shell aquí
 # escriba el siguiente comando para crear un proyecto React con vite, dando el nombre del proyecto
 npm create vite@latest nombreProyecto -- --template react
@@ -57,7 +57,7 @@ cd nombre
 npm install
 npm run dev
 ```
-npm run dev, arranca un servidor, en tu navegador y te muestra una liga para ir a el. Abre la liga que te muestra en la ventana de Power Shell y veras tu aplicación en ejecución.
+npm run dev, arranca un servidor, en tu navegador y te muestra una liga para ir a el. Abre la liga que te muestra y veras tu aplicación en ejecución.
 
 Ve a la ventana de PS y deten el servidor presionando ctrl+c
 
@@ -356,16 +356,20 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 ## Ejemplo estructura de carpetas para el ejemplo del fetch
 
-Necestaremos una aplicación react y crear las carpetas:
-|
-+ src +
-      + components +
-                   + UserList.jsx
-      + helpers +
-                + fetchData.js
-      + hooks +
-              + useFetchData.js
-      + main.jsx
+Necestaremos una aplicación react y crear las carpetas y archivos:
+
+```txt
+├ src 
+  ├ components 
+    └ UserList.jsx
+  ├ helpers 
+    └ fetchData.js
+  ├ hooks 
+    └ useFetchData.js
+  └ main.jsx
+```
+
+
 
 Archivo msin.jsx
 ```js
@@ -724,6 +728,12 @@ npm install react-data-table-component styled-components
 
 ## ligas
 
+[documentacion español](https://es.react.dev/)
+
+[wiki](https://www.reactjs.wiki/)
+
+[jsx](https://facebook.github.io/jsx/)
+
 [Ref: Fazt code](https://www.youtube.com/watch?v=rLoWMU4L_qE&t=0s)
 
 [blog Guerra](https://www.cesarguerra.mx/configuracion-rapida-de-eslint-con-standard-js-para-proyectos-de-javascript-y-de-react-con-vite-js/)
@@ -739,3 +749,5 @@ npm install react-data-table-component styled-components
 [use context](https://es.react.dev/reference/react/useContext)
 
 [enrutamiento](#router)
+
+[data table component](https://react-data-table-component.netlify.app/?path=/docs/getting-started-intro--docs)

@@ -314,6 +314,121 @@ document.getElementById("btn_enviar").onclick = async function(event){
 }
 ```
 
+## axios
+
+[Axios](https://axios-http.com/es/docs/example)
+## Instalacion
+
+```sh
+npm install axios
+```
+```html
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+```
+
+ejemplo:
+```js
+const axios = require('axios');
+
+// Hacer una petición para un usuario con ID especifico
+axios.get('/user?ID=12345')
+  .then(function (response) {
+    // manejar respuesta exitosa
+    console.log(response);
+  })
+  .catch(function (error) {
+    // manejar error
+    console.log(error);
+  })
+  .finally(function () {
+    // siempre sera executado
+  });
+
+// Opcionalmente, la solicitud anterior también se puede realizar como
+axios.get('/user', {
+    params: {
+      ID: 12345
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {
+    // siempre sera ejecutado
+  });  
+
+// ¿Quieres usar async/await? Añade la palabra reservada `async` a tu función/método externo.
+async function getUser() {
+  try {
+    const response = await axios.get('/user?ID=12345');
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+## axios post
+
+```js
+axios.post('/user', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+## peticiones concurrentes
+
+```js
+function getUserAccount() {
+  return axios.get('/user/12345');
+}
+
+function getUserPermissions() {
+  return axios.get('/user/12345/permissions');
+}
+
+Promise.all([getUserAccount(), getUserPermissions()])
+  .then(function (results) {
+    const acct = results[0];
+    const perm = results[1];
+  });
+```
+
+## axios.delete
+
+```js
+// Simple DELETE request with axios
+const element = document.querySelector('#delete-request .status');
+axios.delete('https://reqres.in/api/posts/1')
+.then(() => element.innerHTML = 'Delete successful');
+```
+## alias axios
+
+Alias de metodos de petición
+Por conveniencia los alias han sido proveídos para todos los métodos de petición.
+
+axios.request(config)
+axios.get(url[, config])
+axios.delete(url[, config])
+axios.head(url[, config])
+axios.options(url[, config])
+axios.post(url[, data[, config]])
+axios.put(url[, data[, config]])
+axios.patch(url[, data[, config]])
+NOTA
+Al usar los alias, las propiedades url, method, y data no necesitan ser especificadas en la configuración.
+
+
 Para ´probar el fetch puesde usar el sitio: `http://mock.codes/` que devuelve el error que indicas, por ejemplo: `http://mock.codes/500` te responde con error HTTP 500.
 ## Ligas
 [api fetch](https://developer.mozilla.org/es/docs/Web/API/fetch)
