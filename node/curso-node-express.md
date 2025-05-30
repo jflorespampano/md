@@ -1,6 +1,6 @@
 # usar express
 
-Biblioteca para manejo de peticions http. Express es el framework web más popular de Node, y es la librería subyacente para un gran número de otros frameworks web de Node populares. Proporciona mecanismos para:
+Biblioteca para manejo de peticiones http. Express es el framework web más popular de Node, y es la librería subyacente para un gran número de otros frameworks web de Node populares. Proporciona mecanismos para:
 
 1. Escritura de manejadores de peticiones con diferentes verbos HTTP en diferentes caminos URL (rutas).
 2. Integración con motores de renderización de "vistas" para generar respuestas mediante la introducción de datos en plantillas.
@@ -120,7 +120,7 @@ import express from "express"
 import dotenv from 'dotenv'
 
 dotenv.config() //cargar las variables de entorno del archivo .env en process.env
-const PORT=process.env.PORT //cargar el numeo de puerto
+const PORT=process.env.PORT || 3000 //cargar el numeo de puerto
 
 const app=express()
 //middleware para  aceptar json y texto
@@ -248,6 +248,8 @@ const corsOptions={
 app.use(cors(corsOptions))
 ```
 # refs
+
+[sesiones](https://ull-esit-dsi-1617.github.io/estudiar-cookies-y-sessions-en-expressjs-alejandro-raul-35l2-p4/sessionsexpress.html)
 
 [Con express](https://www.npmjs.com/package/express)
 

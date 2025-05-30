@@ -25,6 +25,8 @@
 |tab/ctrl ' | identa/des|
 |shift-alt-f | formatear texto seleccionado/todo el archivo, con linter/prottier|
 
+Marcar plabra y ctr d uplica cursor
+
 ## Editar varias ocurrencias: 
 |Teclas                 | selección múltiple |
 |-----------------------|-----------------------------------|

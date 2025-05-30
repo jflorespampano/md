@@ -219,6 +219,7 @@ Las propiedades de acceso estáticas RegExp.$1,…, RegExp.$9 devuelven coincide
 ## Promesas
 
 ### promise.all
+
 Promise.all se cumple cuando todas las promesas del iterable dado se han cumplido, o es rechazada si alguna promesa no se cumple.
 
 Promise.all Devuelve una promesa que se resuelve cuando todas las promesas en la matriz de entrada se han resuelto correctamente.
@@ -511,6 +512,11 @@ ir a la raiz de gitbash
 cd ~/
 ```
 Si tienes una configuración previa de .bashrc en tu directorio de usuario, puedes incluir los alias y configuraciones allí en lugar de .bash_profile. Sin embargo, .bash_profile es recomendado como ubicación principal para configuraciones de Bash en Windows.
+
+
+## fnm Fast node manager
+
+permite gestionar diferentes versiones de node
 
 ```sh
 # recarga tu shell si acabas de instalar:

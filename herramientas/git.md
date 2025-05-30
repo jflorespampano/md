@@ -113,7 +113,23 @@ git clone -b < branchname > --single-branch < remote-repo-url >
 
 Ejemplo de Archivo: .gitignore
 ```sh
-node_modules
+# Ignorar la carpeta de dependencias
+node_modules/
+
+# Ignorar archivos de entorno
+.env
+
+# Ignorar logs
+*.log
+npm-debug.log*
+
+# Ignorar cache
+.cache/
+
+# Ignorar compilados
+dist/
+build/
+
 ```
 
 4. Ir a la carpeta del proyecto que deseamos subir

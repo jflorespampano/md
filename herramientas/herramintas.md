@@ -20,7 +20,7 @@
 
 ## color piker
 
-[color p](https://www.w3schools.com/colors/colors_picker.asp)
+[color piker](https://www.w3schools.com/colors/colors_picker.asp)
 
 [image color piker](https://imagecolorpicker.com/)
 

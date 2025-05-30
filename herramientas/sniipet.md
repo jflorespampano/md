@@ -10,3 +10,6 @@ ahi, seleccionamos para que lenguajes estara disponible
 una vez echo eso, añadirlo al json
 
 para usarlo poner la palabra que lo dispara
+
+## mis snipets
+
