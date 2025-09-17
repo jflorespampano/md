@@ -21,7 +21,21 @@
 
 git y github no son lo mismo, pero github utiliza git para gestionar sus proyectos. Básicamente usted lleva el control de sus versiones de proyecto con git y los respalda en la nube con github.
 
-En estas notas usaremos la consola de git (git bash o simpemente bash), pero tambien puede ejecutar los comando usando Power Shell (PS), Si ya teine instalado Git en su equipo; para abrir una ventna de bash dando clic derecho sobre la carpeta de windows donde quiera trabajar y seleccionando 'git bash here'.
+## instalar
+
+[Instala desde](https://git-scm.com/downloads)
+
+## bash
+
+GNU Bash o simplemente Bash (Bourne-again shell) es una popular interfaz de usuario de línea de comandos, específicamente un shell de Unix; así como un lenguaje de scripting de Git, permite ejecutar comandos de Linux que son muy útiles durante el desarrollo, por ejemplo, el comando “curl”. Bash fue originalmente escrito por Brian Fox para el sistema operativo GNU y está disponible para Windows en varias instalaciones, una de ellas es la de GIT. 
+
+Instalar la consola Bash:
+* Opción 1: Bash viene integrada al instalar Git.
+* Opción 2: Bash viene también en otros paquetes de software como MySys2 (Es una colección de herramientas y bibliotecas que le brindan un entorno fácil de usar para crear, instalar y ejecutar software nativo de Windows), puede instalar mySys2 desde: https://www.msys2.org/ 
+* Opción 3: Habilitar WSL (requiere Windows 10/11): ejecutando: "wsl --install" en Power Shell.
+
+
+En estas notas usaremos la consola de git (git bash o simpemente bash) instalada con git, pero tambien puede ejecutar los comando usando Power Shell (PS), Si ya teine instalado Git en su equipo; para abrir una ventna de bash dando clic derecho sobre la carpeta de windows donde quiera trabajar y seleccionando 'git bash here'.
 
 Praa abrir una ventanaa de Power Shell, sobre la carpeta que quiere trabajar presione a tecla 'shift' de clic derecho y seeccioen abrir PS. O seleccione la carpeta y en el menu archivo seleccione la opcion abrir PS.
 
@@ -551,6 +565,8 @@ hizo un merge fast forward
 
 [claves ssh en GitHub](https://docs.github.com/es/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
+[autenticar con ssh](https://docs.github.com/es/authentication/connecting-to-github-with-ssh)
+
 [repositorios](https://www.atlassian.com/es/git/tutorials/syncing)
 
 [git reset](https://www.atlassian.com/es/git/tutorials/undoing-changes/git-reset)
@@ -592,7 +608,7 @@ En la criptografía de clave pública, el sistema criptográfico RSA es el algor
 #busca tu ruta HOME
 echo $HOME
 #si ahi hay una carpeta .ssh, ahi esta tu clave ssh
-#si no, generar ssh, si no existe: 
+#si no, generar ssh, si no existe, haciendo lo sguiente: 
 #crear carpeta
 mkdir $HOME/.ssh
 #para crear los archivos de ssh ejecuta el comando:
@@ -603,10 +619,23 @@ ssh-keygen -t rsa -b 4096 -C "jflorespampano@gmail.com"
 #copiar clave desde el bash
 #ir a carpeta en bash
 #cd $HOME
+#copiar en el portapapeles la clave publica
 #$ clip < mi_clave_ssh.pub
 ```
 
+A coninuación:
 
+1. En la esquina superior derecha de cualquier página en GitHub, haga clic en la fotografía de perfil y luego en  Configuración.
+2. En la sección "Acceso" de la barra lateral, haz clic en  Claves SSH y GPG.
+3. Haga clic en Nueva clave SSH o en Agregar clave SSH.
+4. En el campo "Title" (Título), agrega una etiqueta descriptiva para la clave nueva. Por ejemplo, si estás utilizando un portátil personal, puedes llamar a esta clave "Portátil personal".
+5. Selecciona el tipo de clave, ya sea de autenticación o de firma. Para más información sobre la firma de confirmación, 6. consulta Acerca de la verificación de firma de confirmación.
+7. En el campo "Clave", pega tu clave pública.
+8. Haga clic en Agregar clave SSH.
+9. Si se te solicita, confirma tu contraseña en GitHub. Para más información, consulta Modo sudo.
 
+[ref](https://docs.github.com/es/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
+## etc
 
 git commit -am manda los cambios al staging y hace el commit solo de los archivos seguidos

@@ -7,10 +7,11 @@ EsLINT es el linter de JS. Instale el complemento ESLINT en vscode
 
 ## Complementos en VSCode
 
-ES7+ React/Redux, React-Native snippets
-ESLint
+* ES7+ React/Redux, React-Native snippets
+* ESLint
 
 ## crear proyecto react
+
 En la consola ejecutar:
 ```sh
 npm create vite@latest nombre -- -- template react
@@ -39,6 +40,7 @@ Una vez instalado Standard JS, bastará con añadir su configuración de ESLint 
     ]
   }
 ```
+
 El día 20 de Abril de 2023, Vite actualizo su herramienta para crear un nuevo proyecto (create vite), donde ahora incluye un nuevo archivo .eslintrc.cjs para realizar la configuración del Linter, incluso ya viene con una configuración de fábrica, pero sí aún así queremos usar las reglas de Standard JS, solo debemos hacer lo siguiente:
 
 En el archivo .eslintrc.cjs, en el apartado de extends, añadir las reglas ‘standard’ y ‘standard-jsx’, quedando de la siguiente forma dicho apartado:
@@ -57,8 +59,9 @@ En el archivo .eslintrc.cjs, en el apartado de extends, añadir las reglas ‘st
 ## notas
 * En vite los componentes empiezan con mayusculas
 
-## comandos
-Comando: rafce en vscode para crear componente rapido debemos tener instalado
+## snippets
+
+snippet: rafce en vscode para crear componente rapido debemos tener instalado
 el complemento ES7+ React/Redux, React-Native snippets
 
 ```jsx
@@ -74,9 +77,12 @@ export default ToDoList
 ```
 
 ## Hooks
+
 para manejar estados en react
 por ejemplo useState, useEfect
-si ven un codigo en react que empeise con use es un hook
+si ven un codigo en react que inicie con la palabra use es un hook
+
+## extensiones para el navegador
 
 react developer tool extension para navegador
 para depurar react

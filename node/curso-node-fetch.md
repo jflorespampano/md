@@ -373,6 +373,12 @@ async function getUser() {
 
 ## axios post
 
+Axios envía datos como JSON por defecto (no necesita headers ni JSON.stringify).
+```js
+axios.post('https://api.example.com/data', { user: 'John' })
+  .then(response => console.log(response.data));
+```
+
 ```js
 axios.post('/user', {
     firstName: 'Fred',
@@ -384,6 +390,35 @@ axios.post('/user', {
   .catch(function (error) {
     console.log(error);
   });
+```
+
+
+## ejemplo
+
+```js
+document.getElementById("myForm").addEventListener("submit", async (e) => {
+  e.preventDefault(); // Evita el envío tradicional
+
+  // 1. Obtener datos del formulario con FormData
+  const formData = new FormData(e.target);
+
+  // 2. Convertir FormData a un objeto JavaScript
+  const formDataObj = Object.fromEntries(formData.entries());
+
+  // 3. Enviar con Axios (POST como JSON)
+  try {
+    const response = await axios.post("https://tu-api.com/endpoint", formDataObj, {
+      headers: {
+        "Content-Type": "application/json", // Indica que envías JSON
+      },
+    });
+    console.log("Respuesta del servidor:", response.data);
+    alert("¡Datos enviados correctamente!");
+  } catch (error) {
+    console.error("Error al enviar:", error.response?.data || error.message);
+    alert("Error al enviar el formulario.");
+  }
+});
 ```
 
 ## peticiones concurrentes
@@ -430,8 +465,75 @@ Al usar los alias, las propiedades url, method, y data no necesitan ser especifi
 
 
 Para ´probar el fetch puesde usar el sitio: `http://mock.codes/` que devuelve el error que indicas, por ejemplo: `http://mock.codes/500` te responde con error HTTP 500.
+
+## Faker.js (Librería JavaScript)
+
+[guia](https://fakerjs.dev/guide/)
+
+Genera datos fake directamente en tu código (direcciones, textos, imágenes).
+
+```js
+import { faker } from '@faker-js/faker';
+console.log(faker.person.fullName()); // Nombre aleatorio
+const randomEmail = faker.internet.email();
+```
+
+Ejemplo:
+
+```js
+import { faker } from '@faker-js/faker';
+
+// Configuración regional (opcional)
+// faker.setLocale('es'); // Para datos en español
+
+const generatePerson = () => {
+  const gender = faker.person.sexType(); // 'female' o 'male'
+  
+  return {
+    id: faker.string.uuid(), // ID único
+    nombre: faker.person.fullName({ sex: gender }), // Nombre acorde al género
+    edad: faker.number.int({ min: 18, max: 80 }), // Edad entre 18-80
+    sexo: gender === 'female' ? 'Mujer' : 'Hombre', // En español
+    ciudad: faker.location.city(), // Ciudad aleatoria
+    gustos: [
+      faker.helpers.arrayElement(['Música', 'Deportes', 'Cine', 'Viajar']),
+      faker.helpers.arrayElement(['Tecnología', 'Cocina', 'Libros', 'Arte'])
+    ] // 2 gustos aleatorios
+  };
+};
+
+// Generar 5 personas de ejemplo
+const personas = Array.from({ length: 5 }, generatePerson);
+console.log(personas);
+```
+
+## Generate test data para su database
+
+datos aleatorios para probar sus aplicaciones 
+
+[sitio](https://www.databasetestdata.com/)
+
+
+## extensiones para vscode
+
+* Tunderclien
+* RestClient (Huachao Mao)
+
 ## Ligas
+
+[probar errores x ej 500](http://mock.codes/500)
+
+[data fake](https://reqres.in/)
+
+[data fake placeholder](https://jsonplaceholder.typicode.com/)
+
 [api fetch](https://developer.mozilla.org/es/docs/Web/API/fetch)
+
+[api dicebear](https://www.dicebear.com/how-to-use/http-api/)
+
+[reqres](https://reqres.in/)
+
+[storeapi](https://fakestoreapi.com/)
 
 [Usando fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 

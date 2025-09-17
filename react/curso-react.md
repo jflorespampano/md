@@ -13,6 +13,11 @@ Si no reconoce el comando, instale **node** desde: [Download Node](https://nodej
 
 Con node se descarga la aplicación **npm** (node package manager) manejador de paquetes de node (un paquete es una biblioteca de node), esta aplicacion se puede usar para crear proyectos en React.
 
+ejecute:
+```sh
+npm --version
+```
+
 ## Vite
 
 Vite (palabra francesa para "rápido", pronunciada /vit/, como "veet") es una herramienta de construcción que tiene como objetivo proporcionar una experiencia de desarrollo más rápida y eficiente para proyectos web modernos, permitiendo crear la estructura de tu proyecto de manera facil y rápida. Consta de dos partes principales:
@@ -51,7 +56,8 @@ Lo anterior lo podemos resumir en 4 comandos:
 
 ```sh
 npm create vite 
-# contestar las preguntas
+# contestar las preguntas o hacer: 
+npm create vite@latest nombreProyecto -- --template react
 # una vez creado ir a la carpeta del nuevo proyecto
 cd nombre
 npm install
@@ -63,7 +69,7 @@ Ve a la ventana de PS y deten el servidor presionando ctrl+c
 
 ## Adaptando la plantilla a nuestro proyecto
 
-Ve a la sub-carpeta src de tu proyecto, borra todos los archivos excepto main.jsx, sustituye el contenido del archivo main.jsx por lo siguiente:
+Ve a la sub-carpeta **src** de tu proyecto, borra todos los archivos excepto main.jsx, sustituye el contenido del archivo main.jsx por lo siguiente:
 
 Archivo: main.jsx
 ```js
@@ -95,7 +101,7 @@ const root=ReactDom.createRoot(document.getElementById('root'))
 root.render({Greeting()})
 ```
 
-React usa jsx, en jsx el componente, se puede llamar así:
+React usa jsx, dentro de jsx para ejecutar código js, se debe poner entre laves {}, en jsx el componente, se puede llamar así:
 
 ```js
 root.render(
@@ -272,7 +278,7 @@ export const Saludo = () => {
 }
 ```
 
-dato es la variable y setDato es la funcion a la que hay que llamar para actualizar la variable dato.
+**dato** es la variable y **setDato** es la funcion a la que hay que llamar para actualizar la variable dato.
 
 # cargar datos desde un fetch
 
@@ -566,9 +572,7 @@ es el linter de js, agregarlo a complementos de code
 
 ## notas
 * En vite los componentes empiezan con mayusculas
-
-## comandos
-Comando: rafce en vscode para crear componente rapido debemos tener instalado
+* snippet: rafce en vscode para crear componente rapido debemos tener instalado
 en ES7+
 
 ## Hooks
@@ -586,7 +590,7 @@ request: https://api.giphy.com
 api key : LSQA1CBorhzJ4SgFcqimkf4BwdSpYuoX
 
 
-# Crear proyecto react con create-app
+# Crear proyecto react con create-app (deprecated)
 
 [documentacion](https://create-react-app.dev/docs/getting-started)
 
@@ -617,6 +621,7 @@ Nota: opcionalmente si desea que las lineas largas se muestren en la misma panta
 ```
 
 ## Agregar componente en React
+
 Agregar un componente, para agregar un componente, (por ahora en el mismo archivo index.js), agregue al archivo index.js el código de la función Greeting:
 
 Archivo:index.js
@@ -673,6 +678,33 @@ root.render(
 
 ##  usar React Query
 
+React Query es una biblioteca de gestión de estado para React especializada en datos asíncronos (APIs, caché, mutaciones, etc.). Simplifica la carga, sincronización y actualización de datos en aplicaciones React.
+
+Problema que resuelve
+
+En React tradicional:
+
+* Manejar useEffect + useState para fetch de datos.
+* Gestionar caché manualmente.
+* Actualizar datos después de mutaciones (POST/PUT/DELETE).
+* Evitar re-renders innecesarios.
+
+React Query automatiza todo esto.
+
+✨ Características principales
+
+* Caché inteligente: Guarda datos y los reutiliza automáticamente.
+* Actualización en segundo plano: Refresca datos obsoletos.
+* Gestión de mutaciones: Simplifica POST/PUT/DELETE.
+* Paginación y carga infinita.
+* DevTools integradas para depuración.
+
+Beneficios clave
+* Menos código: Elimina useEffect, useState, y lógica manual.
+* Caché automático: Reutiliza datos entre componentes sin refetch.
+* Actualizaciones optimistas: Muestra cambios antes de confirmar con el servidor.
+* Reintentos automáticos: Si una petición falla, React Query la reintenta.
+
 instalar el query
 ```sh
 npm i react-query
@@ -702,6 +734,215 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 
 ```
+
+## Ejemplo con react query
+
+Configuración inicial, envuelve tu app en QueryClientProvider
+
+```js
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <MiComponente />
+    </QueryClientProvider>
+  );
+}
+```
+
+Consulta Get con useQuery
+
+```js
+import { useQuery } from 'react-query';
+
+const fetchUsers = async () => {
+  const res = await fetch('https://api.example.com/users');
+  return res.json();
+};
+
+function UsersList() {
+  const { data, isLoading, error } = useQuery('users', fetchUsers);
+
+  if (isLoading) return <p>Cargando...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <ul>
+      {data.map(user => <li key={user.id}>{user.name}</li>)}
+    </ul>
+  );
+}
+```
+
+Mutación (POST/PUT/DELETE) con useMutation
+
+```js
+import { useMutation, useQueryClient } from 'react-query';
+
+const addUser = async (newUser) => {
+  const res = await fetch('https://api.example.com/users', {
+    method: 'POST',
+    body: JSON.stringify(newUser),
+  });
+  return res.json();
+};
+
+function AddUserForm() {
+  const queryClient = useQueryClient();
+  const mutation = useMutation(addUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('users'); // Refresca la lista de usuarios
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({ name: 'Nuevo Usuario' });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit" disabled={mutation.isLoading}>
+        {mutation.isLoading ? 'Guardando...' : 'Agregar Usuario'}
+      </button>
+    </form>
+  );
+}
+```
+
+Ejemplo con put
+
+```js
+import { useMutation, useQueryClient } from 'react-query';
+
+// Función para actualizar el usuario en la API
+const updateUser = async ({ userId, userData }) => {
+  const response = await fetch(`https://api.example.com/users/${userId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userData),
+  });
+  if (!response.ok) throw new Error('Error al actualizar');
+  return response.json();
+};
+
+function EditUserForm({ userId, initialData }) {
+  const queryClient = useQueryClient();
+  const [name, setName] = useState(initialData.name);
+
+  // Configuración de la mutación
+  const mutation = useMutation(updateUser, {
+    // Actualización optimista: modifica el caché ANTES de la petición
+    onMutate: async (newUserData) => {
+      // Cancela queries activas para evitar sobrescrituras
+      await queryClient.cancelQueries(['user', userId]);
+
+      // Snapshot del valor anterior (por si hay que revertir)
+      const previousUser = queryClient.getQueryData(['user', userId]);
+
+      // Actualiza el caché con el nuevo valor optimista
+      queryClient.setQueryData(['user', userId], (old) => ({
+        ...old,
+        ...newUserData.userData,
+      }));
+
+      return { previousUser }; // Para rollback en caso de error
+    },
+    // Si falla la petición, revertimos el cambio optimista
+    onError: (err, newUserData, context) => {
+      queryClient.setQueryData(['user', userId], context.previousUser);
+      alert(`Error: ${err.message}`);
+    },
+    // Si éxito, invalida queries relacionadas para refrescar datos
+    onSuccess: () => {
+      queryClient.invalidateQueries(['user', userId]);
+      queryClient.invalidateQueries('users'); // Refresca lista de usuarios
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({ 
+      userId, 
+      userData: { name } 
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Nombre del usuario"
+      />
+      <button 
+        type="submit" 
+        disabled={mutation.isLoading}
+      >
+        {mutation.isLoading ? 'Guardando...' : 'Actualizar'}
+      </button>
+      
+      {mutation.isError && (
+        <p style={{ color: 'red' }}>{mutation.error.message}</p>
+      )}
+      {mutation.isSuccess && (
+        <p style={{ color: 'green' }}>¡Usuario actualizado!</p>
+      )}
+    </form>
+  );
+}
+```
+Explicacion
+🔍 Explicación paso a paso
+
+* updateUser:
+
+Función que hace la petición PUT a la API.
+
+* onMutate:
+
+Actualiza el caché de forma optimista (antes de recibir respuesta del servidor).
+Guarda el valor anterior por si hay que revertir (rollback).
+
+* onError:
+
+Si la API falla, revierte los cambios optimistas usando el snapshot (previousUser).
+
+* onSuccess:
+
+Invalida queries relacionadas para asegurar datos frescos.
+
+* Estados de la mutación:
+
+* isLoading: Muestra feedback durante la petición.
+
+* isError/error: Manejo de errores.
+
+* isSuccess: Confirmación de éxito.
+
+
+
+🛠️ DevTools
+Actívalas para depurar:
+
+```js
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <MiApp />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
+}
+```
+Verás una interfaz para inspeccionar consultas y mutaciones.
+
 
 ## React material ui
 

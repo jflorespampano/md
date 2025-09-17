@@ -10,6 +10,9 @@ en su ventana de comandos ponga el comando:
 
 ```js
 node --version
+//versiones (solo en laa consola bash)
+fnm list
+fnm use 20.18.0
 ```
 Si no reconoce el comando, instale node desde: [Download Node](https://nodejs.org/en/download)
 
@@ -461,16 +464,50 @@ console.log(customDate.format('dddd, MMMM D, YYYY')); // Ejemplo: Wednesday, Dec
 
 ```
 
-## temas prometedores por revisar
+## colores para la consola <a name="colores"></a>
+
+```js
+//salida e rojo
+console.log(`\x1b[31m${error.message}\x1b[0m`)
+console.log("\x1b[30m%s\x1b[0m", "Texto Negro"); 
+console.log("\x1b[31m%s\x1b[0m", "Texto Rojo"); 
+console.log("\x1b[32m%s\x1b[0m", "Texto Verde"); 
+console.log("\x1b[33m%s\x1b[0m", "Texto Amarillo"); 
+console.log("\x1b[34m%s\x1b[0m", "Texto Azul"); 
+console.log("\x1b[35m%s\x1b[0m", "Texto Magenta");
+console.log("\x1b[36m%s\x1b[0m", "Texto Cian"); 
+console.log("\x1b[37m%s\x1b[0m", "Texto Blanco");
+```
+
+## herramientas
+
+### playground
+
+Probar código en js
+
+[jsplayground](https://www.jsplayground.dev/)
+
+### visualizar json en graficos interactivos
+
+[jsoncrack](https://jsoncrack.com/)
+
+### caja de herramientas
+
+[omatsuri](https://omatsuri.app/)
+
+### herramienta para hacer apps responsivas
+
+[responsively](https://responsively.app/)
+
+### validador de json
+
+[validador json](https://jsonlint.com/)
+
+## temas adicionales
 
 [gridjs](https://gridjs.io/docs/config/pagination)
 [generar datos falsos](https://www.npmjs.com/package/@faker-js/faker)
 
-## generar datos falsos
-
-```sh
-npm install --save-dev @faker-js/faker
-```
 
 ## fnm administraador de versiones de node
 
@@ -523,7 +560,7 @@ permite gestionar diferentes versiones de node
 source ~/.bashrc
 # prueba
 fnm --version
-# instalar una version especcífica
+# instalar una version específica
 fnm install 14.17.0
 # mostrar las versiones instaladas 
 fnm list
@@ -560,15 +597,6 @@ node -v # should print `v20.18.0`
 npm -v # should print `10.8.2`
 ```
 
-## playground
-
-[jsplayground](https://www.jsplayground.dev/)
-
-[jsoncrack](https://jsoncrack.com/)
-
-[omatsuri](https://omatsuri.app/)
-
-[responsively](https://responsively.app/)
 
 ## bun
 

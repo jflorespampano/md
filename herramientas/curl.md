@@ -44,6 +44,7 @@ curl https://jsonplaceholder.typicode.com/posts
 #enviar parametros en la url:
 #en curl, se debe poner \ para escapar el & en la consola de linux
 curl http://localhost:3000/?id=23\&nombre=juan perez\&correo=juan@mail\&edad=23
+curl https://jsonplaceholder.typicode.com/posts/?id=7
 ```
 
 ## Post enviando codificación en urlencoded
@@ -53,8 +54,9 @@ Cuando pasa parametros en curl con -d x deafult se usa la codificación:
 de no usar esa se debe especificar otra con -H
 
 ```sh
+#con -d no necesita escaparse el &
 curl -X POST  http://localhost:3000/user -d 'id=23&nombre=ana perez&correo=ana@mail&edad=32'
-curl --request POST https://jsonplaceholder.typicode.com/posts -d 'title=23&body=cuerop del body&userId=32'
+curl --request POST https://jsonplaceholder.typicode.com/posts -d 'title=23&body=cuerpo del body&userId=32'
 ```
 
 ## Post enviando codificación json

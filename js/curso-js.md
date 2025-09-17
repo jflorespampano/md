@@ -7,8 +7,10 @@
 6. [programacion_funcional](#programacion_funcional)
 7. [inmutabilidad](#inmutabilidad)
 8. [funciones puras](#funciones_puras)
+9. [clases](#clases)
+10 [colores en salisa de consola](#colores)
 
-# Notas
+# Nombres de entidades
 
 PascalCase
 camelCase
@@ -45,6 +47,24 @@ Es soprtado por todos los navegadores y tambien se puede usar del lado del servi
 
 A continuación un resumen del lenguaje.
 
+## tipo de datos
+
+El último estándar ECMAScript define nueve tipos:
+
+Seis tipos de datos primitivos, controlados por el operador typeof
+
+1. Undefined: typeof instance === "undefined"
+2. Boolean: typeof instance === "boolean"
+3. Number: typeof instance === "number"
+4. String: typeof instance === "string"
+5. BigInt: typeof instance === "bigint"
+6. Symbol: typeof instance === "symbol"
+7. Null: typeof instance === "object". Tipo primitivo especial. En JavaScript, null es un valor primitivo que representa la ausencia intencional de cualquier valor u objeto. Es decir, se utiliza para indicar que una variable no tiene ningún valor asignado de forma deliberada. Aunque null es un primitivo, curiosamente, su tipo (typeof) es "object" debido a un error histórico en JavaScript.
+
+8. Object: typeof instance === "object". Tipo estructural especial que no es de datos pero para cualquier instancia de objeto construido que también se utiliza como estructuras de datos: new Object, new Array, new Map, new Set, new WeakMap, new WeakSet, new Date y casi todo lo hecho con la palabra clave new;
+
+9. Function: una estructura sin datos, aunque también responde al operador typeof: typeof instance === "function". Esta simplemente es una forma abreviada para funciones, aunque cada constructor de funciones se deriva del constructor Object.
+
 ## variables <a name="variables"></a>
 
 Como js es un lenguaje debilmente tipado, las variables no tienen tipo asignado en la declaración, se declaran así:
@@ -53,21 +73,49 @@ Como js es un lenguaje debilmente tipado, las variables no tienen tipo asignado 
 var saludo="hola"
 const x=0
 let nombre=true
-//tipos primitivos, asignacion por valor
+//tipos primitivos se asignacion por valor
 int x=0
 iny y=x
 x=2
 console.log(x) //2
 console.log(y) //0
 
-//inmutabilidad 
+//los objetos se asignan por referencia
+//declaramos un objeto
+let persona={
+    "nombre": "Juan",
+    "edad": 30
+}
+
+//al copiar, copia la referencia
+let persona2=persona;
+persona2.nombre="Pedro";
+
+console.log("persona:",persona) // persona:{ nombre: 'Pedro', edad: 30 }
+console.log("persona 2:",persona2) // persona2:{ nombre: 'Pedro', edad: 30 }
+
+//si queremos crear un clon:
+//declaramos un objeto
+let persona={
+    "nombre": "Juan",
+    "edad": 30
+}
+
+//clonamos el objeto
+let persona3={...persona};
+persona3.nombre="Luis";
+
+console.log("persona:",persona) // persona:{ nombre: 'Juan', edad: 30 }
+console.log("persona 3:",persona3) // persona2:{ nombre: 'Luis', edad: 30 }
+
+//usar const para inmutabilidad 
 const nombre="juan perez"
 nombre="maria uc" //error
 
 ```
 ## Funciones <a name="funciones"></a>
 
-Exsten 2 tipos de funcones funciones y funciones flecha
+Exsten 2 tipos de funcones: funciones y funciones flecha
 ```js
 //función
 function suma(a,b){
@@ -299,7 +347,7 @@ function f2() {
 f2() === undefined;
 ```
 
-Cuando es llamada con el operador dot, el this toma el contexto del objeto que precede al punto
+Cuando es llamada con el operador dot(punto), el this toma el contexto del objeto que precede al punto
 ```js
 var o = {
   prop: 37,
@@ -802,20 +850,37 @@ const p=new alumno(1,'ana','@mail')
 p.muestra()
 ```
 
-
-## colores
+## iteradores
 
 ```js
-//salida e rojo
-console.log(`\x1b[31m${error.message}\x1b[0m`)
-console.log("\x1b[30m%s\x1b[0m", "Texto Negro"); 
-console.log("\x1b[31m%s\x1b[0m", "Texto Rojo"); 
-console.log("\x1b[32m%s\x1b[0m", "Texto Verde"); 
-console.log("\x1b[33m%s\x1b[0m", "Texto Amarillo"); 
-console.log("\x1b[34m%s\x1b[0m", "Texto Azul"); 
-console.log("\x1b[35m%s\x1b[0m", "Texto Magenta");
-console.log("\x1b[36m%s\x1b[0m", "Texto Cian"); 
-console.log("\x1b[37m%s\x1b[0m", "Texto Blanco");
+function* fibonaci(){
+  let x1=1;
+  let x2=0;
+  for(;true;){
+      xs=x1+x2
+      x1=x2
+      x2=xs
+      yield xs
+    
+  }
+}
+const f=fibonaci()
+console.log(f.next())
+console.log(f.next())
+console.log(f.next())
+console.log(f.next())
+console.log(f.next())
+
 ```
+
+salida:
+
+{value: 1, done: false}
+{value: 1, done: false}
+{value: 2, done: false}
+{value: 3, done: false}
+{value: 5, done: false}
+
 ## referencias
+
 [clases](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Classes)

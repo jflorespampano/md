@@ -26,7 +26,7 @@ Agregar la entrada: "type":"module", al package.json, así:
   "main": "index.mjs",
   "type":"module"
   "scripts": {
-    "test": "node run index"
+    "dev": "node run index"
   },
   "author": "jflores",
   "license": "ISC",
@@ -41,19 +41,88 @@ Agregar la entrada: "type":"module", al package.json, así:
 ## ejemplo básico
 
 ```js
-//archivo:index.js
-
 import express from 'express';
 const app = express();
 
 app.get('/', (req, res) => {
-	res.send('Hola mundo');
+    res.send('Hola mundo'); //el status 200 va x default
+	// res.status(200).send('Hola mundo');
+	// res.status(200).set({'Content-Type': 'text/html'}).send('<p>Hola mundo</p>');
+    // res.status(200).json({success:true, data:"mis datos", error:null});
 })
-const PORT = 5000;
+const PORT = 3000;
 
 app.listen(PORT, () => {
 	console.log(`Servidor corriendo el el PUERTO ${PORT}`);
 })
+```
+
+Otras formas de devolver respuesta:
+
+* con encabezado usando writehead:
+```js
+    response.writeHead(200, { "Content-Type": "text/plain" });
+    // Se responde, en el cuerpo de la respuesta con el mensaje "Hello World"
+    response.end("Hola Mundo!\n");
+```
+es (recomendado) el siguiente código mas intuitivo:
+```js
+// Equivalente en Express (recomendado)
+
+  res.status(200)
+     .set({
+       'Content-Type': 'text/plain',
+       'Custom-Header': 'Hello-World',
+     })
+     .send('¡Hola con métodos Express!');
+
+```
+
+* Con json() no se necesita JSON.stringify
+```js
+res.status(200).json({success:true, data:"mis datos", error:null});
+```
+
+## devolver html
+
+```js
+import express from 'express';
+const app = express();
+
+app.get('/', (req, res) => {
+    const html = `
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>Mi Página</title>
+            </head>
+            <body>
+                <h1>¡Hola desde Express!</h1>
+                <p>Este HTML se envió directamente como string.</p>
+            </body>
+        </html>
+    `;
+    res.set({
+       'Content-Type': 'text/html'
+     }).send(html); // Envía el HTML como respuesta
+});
+
+app.listen(3000, () => console.log('Servidor en http://localhost:3000'));
+```
+
+## servidor estatico
+
+```js
+import express from 'express'
+const app = express();
+
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join('public', 'index.html'));
+});
+
+app.listen(3000, () => console.log('Servidor corriendo en http://localhost:3000'));
 ```
 
 ## middleware
@@ -79,9 +148,9 @@ Una función de middleware toma tres argumentos:
 Ejemplo
 ```js
 const myMiddleware = (req, res, next) => {
-  // Perform some operation on the request or response
+  // realiazar alguna operación en el request o response
   console.log(`Received request: ${req.method} ${req.url}`);
-  next(); // Call the next middleware function
+  next(); // llamar al siguiente middleware 
 };
 
 //cargarla antes de las funciones de atencion a get/post/etc, se carga así:
@@ -100,7 +169,7 @@ El middleware urlencoded() de Express.js se utiliza para analizar solicitudes en
 En Express.js 4.16.0 y versiones posteriores, el middleware body-parser ya no es necesario y se puede utilizar en su lugar el middleware urlencoded integrado.
 
 
-## ejemplo medio
+## ejemplo con variabls de entorno
 
 Usaremos un archivo .env. 
 Cree archivo: .env
@@ -120,7 +189,7 @@ import express from "express"
 import dotenv from 'dotenv'
 
 dotenv.config() //cargar las variables de entorno del archivo .env en process.env
-const PORT=process.env.PORT || 3000 //cargar el numeo de puerto
+const PORT=process.env.PORT || 3000 //cargar el numero de puerto
 
 const app=express()
 //middleware para  aceptar json y texto
@@ -200,6 +269,15 @@ app.listen(PORT,()=>{
 })
 ```
 
+midleware para ruta no encontrada, poner al final (antes del listen):
+
+```js
+// Middlewares
+app.use((_, res, next) => {
+  res.status(404).send("404 página no encontrada");
+});
+```
+
 ## manejo de directorio path
 
 process.cwd() es un método de Node.js que devuelve el directorio de trabajo actual del proceso de Node.js. Proporciona la ruta absoluta del directorio desde el que se inició el proceso de Node.js. Este directorio se suele denominar “directorio de trabajo actual” o “CWD”
@@ -215,6 +293,17 @@ Tenga en cuenta el comportamiento de los enlaces simbólicos y los posibles prob
 Pruebe su código en diferentes plataformas para garantizar la compatibilidad.
 Al comprender process.cwd() y su comportamiento, puede escribir aplicaciones Node.js más sólidas e independientes de la plataforma.
 
+## estructura de carpetas
+
+mi-proyecto-express/
+├── node_modules/   # la crea npm
+├── package.json    # archivo de configuracion lo crea npm
+├── app.js          # Punto de entrada
+├── routes/         # Rutas (ej: users.js, products.js)
+├── controllers/    # Lógica de las rutas
+├── middleware/     # Middlewares personalizados
+└── public/         # Archivos estáticos (CSS, JS, imágenes)
+
 ## crear proyectos
 usando modulos common js
 [crear proyectos con express](https://expressjs.com/es/starter/generator.html)
@@ -222,9 +311,9 @@ usando modulos common js
 ## crar proyectos (ok)
 Para crear un proyecto node con express puede tambien usar el generador de proyectos:
 ```sh
-#instaar el genrador de proyectos
+#instalar el genrador de proyectos
 npm install -g express-generator@4
-# crear el proyectco por ejemplo con el motor de vsitas ejs
+# crear el proyecto por ejemplo con el motor de vsitas ejs
 express nodeServer --view=ejs
 cd nodeSerever
 npm install

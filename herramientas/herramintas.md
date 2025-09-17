@@ -1,10 +1,41 @@
-## excalidraw pizarra virtuaal
+## herramientas
+
+Replit.com es una plataforma en línea que permite programar, colaborar y alojar proyectos directamente desde el navegador, sin necesidad de instalar software localmente. Es muy popular entre estudiantes, desarrolladores y educadores por su facilidad de uso y sus características colaborativas.
+
+[replit](https://replit.com/)
+
+[editor/compilador de código en línea](https://codesandbox.io/s/react-hook-form-get-started-j5wxo)
 
 [Excalidraw](https://excalidraw.com/)
 
+[obsidian, probar](https://obsidian.md/)
+
+[notion, probar](https://www.notion.com/es)
+
+[validar json](https://jsonlint.com/)
+
+[navaja suiza para desarrolladores](https://devtoys.app/)
+
+Probar código en js
+
+[jsplayground](https://www.jsplayground.dev/)
+
+visualizar json en graficos interactivos
+
+[jsoncrack](https://jsoncrack.com/)
+
+caja de herramientas
+
+[omatsuri](https://omatsuri.app/)
+
+herramienta para hacer apps responsivas
+
+[responsively](https://responsively.app/)
+
+
 ## css
 
-[probar css](https://codi.link/%7C%7C)
+[probar css en linea](https://codi.link/%7C%7C)
 
 [calculador de especificidad] (https://specificity.keegan.st/)
 
@@ -28,7 +59,21 @@
 
 [oklch](https://oklch.com/#70,0.1,89,100)
 
+## pandoc
+
+[convertidos universal](https://pandoc.org/)
+
+Instalar pandoc:
+
+```sh
+# Instalar Pandoc: https://pandoc.org/installing.html
+# convertir
+pandoc archivo.md -o archivo.html --mathml
+pandoc archivo.md -o archivo.pdf --pdf-engine=lualatex # si genero pdf con latex
+```
+
 ## react
+
 en el archivo: .eslint.cjs
 en la entrada:
 ```json

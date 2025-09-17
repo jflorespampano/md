@@ -170,7 +170,7 @@ si tenemos un archivo .cjs lo importamos así:
 import {suma} from './operaciones.cjs'
 ```
 
-Cargar un archivo .json
+## Cargar un archivo .json versiones anteriores
 ```js
 import {createRequire} from 'module'
 const require=createRequire(import.meta.url)
@@ -178,6 +178,14 @@ const require=createRequire(import.meta.url)
 const user=require('./users.json')
 console.log(user)
 
+```
+
+## en versiones recientes 21 en adelante, cargar archivo json
+
+```js
+import data from './data.json' with { type: 'json' };
+
+console.log(data)
 ```
 
 ## usar ESM desde Commonjs
@@ -237,3 +245,5 @@ app.listen(PORT, () => {
 ## Refs
 
 [desde youtube: desarrollo Util]
+
+[referencia](https://nodejs.org/api/esm.html)

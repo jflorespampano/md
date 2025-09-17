@@ -1,3 +1,6 @@
+# Windows power shell
+
+
 ## crear un perfil de usuario
 ```sh
 new-item -type file -path $profile -force

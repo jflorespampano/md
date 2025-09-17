@@ -61,7 +61,7 @@ A su vez cada proyecto tendrá su propia estructura
  
 ### proyecto node/ express
 
-Puede usar alguna de lar siguientes ramientas para crear la estructura de carpetas de su proyecto:
+Puede usar alguna de lar siguientes herramientas para crear la estructura de carpetas de su proyecto:
 
 1. [herramienta generator:](https://expressjs.com/es/starter/generator.html)
 
@@ -71,16 +71,22 @@ Puede usar alguna de lar siguientes ramientas para crear la estructura de carpet
 
 3. La que usaremos en el curso:
 
+El comando npm install -g express-generator@4 se utiliza para instalar globalmente la herramienta Express Generator (versión 4.x), que te permite crear rápidamente la estructura básica de un proyecto backend con Express.js en Node.js.
 Crear un proyecto node con express 
 ```sh
 #instalar el genrador de proyectos
 npm install -g express-generator@4
-# crear el proyectco por ejemplo con el motor de vsitas ejs
+# crear el proyecto por ejemplo con el motor de vsitas ejs
 express nodeServer --view=ejs
 cd nodeSerever
 npm install
 npm run start
 ```
+
+Opciones:
+--view=ejs: Opcional. Define el motor de plantillas (puedes usar pug o hbs).
+nodeServer: Nombre de tu carpeta/proyecto.
+
 Ahora con run start: node ./bin/www
 o: node --env-file=.env ./bin/www
 
@@ -110,3 +116,44 @@ O puede crear su estructura a mano de otra forma; puede ser:
     ├── index.pug
     └── layout.pug
 </pre>
+
+Estructura de carpetas segun Deep Seek
+
+<pre>
+mi-backend/
+├── src/
+│   ├── controllers/       # Lógica de manejo de rutas
+│   │   ├── userController.js
+│   │   └── authController.js
+│   ├── routes/            # Definición de rutas
+│   │   ├── userRoutes.js
+│   │   └── authRoutes.js
+│   ├── models/            # Modelos de base de datos (Mongoose/SQL)
+│   │   ├── User.js
+│   │   └── Product.js
+│   ├── services/          # Lógica de negocio (opcional)
+│   │   ├── userService.js
+│   │   └── authService.js
+│   ├── middlewares/       # Middlewares personalizados
+│   │   ├── authMiddleware.js
+│   │   └── errorHandler.js
+│   ├── utils/             # Utilidades (helpers, config)
+│   │   ├── logger.js
+│   │   └── database.js
+│   ├── config/            # Configuraciones (env, constants)
+│   │   ├── env.js
+│   │   └── cloudinary.js
+│   ├── public/            # Archivos estáticos (images, CSS)
+│   └── app.js             # Configuración principal de Express
+├── tests/                 # Pruebas unitarias/integración
+│   ├── user.test.js
+│   └── auth.test.js
+├── .env                   # Variables de entorno (NO subir a Git)
+├── .gitignore             # Ignorar node_modules, .env, etc.
+├── package.json           # Dependencias y scripts
+└── server.js              # Punto de entrada (inicia el servidor)
+</pre>
+
+## ligas
+
+[Estructuras de carpetas](https://www.webreactiva.com/blog/organizar-estructura-proyecto-incremental)
