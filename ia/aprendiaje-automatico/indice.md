@@ -1,0 +1,7 @@
+[[A A introducción]]
+[[Regresión lineal]]
+[[Ejemplo RL]]
+[[Regresión logística]]
+[[Clasificación]]
+[[Redes neuronales]]
+[[Tensor Flow]]

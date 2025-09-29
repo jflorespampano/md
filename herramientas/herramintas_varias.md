@@ -1,3 +1,7 @@
+---
+categoría:
+tipo: etc
+---
 ## herramientas
 
 Replit.com es una plataforma en línea que permite programar, colaborar y alojar proyectos directamente desde el navegador, sin necesidad de instalar software localmente. Es muy popular entre estudiantes, desarrolladores y educadores por su facilidad de uso y sus características colaborativas.

@@ -1,3 +1,7 @@
+---
+categoría: herramientas
+tipo: bash
+---
 # git
 1. [configuracion git](#config)
 2. [bajar repositorio](#bajar_repo)
@@ -46,7 +50,7 @@ Git tiene 3 areas de trabajo:
 
 ## 1 configuracion de git <a name="config"></a>
 
-Antes de empezar a trabajar con sus proyectos, debe cofigurar git para  que este enlazado con su cuenta de github, esto lo hará solo una vez al instalar git:
+Antes de empezar a trabajar con sus proyectos, debe cofigurar git para que este enlazado con su cuenta de github/ git lab, puesde hacer un enlace global solo una vez despues instalar git:
 
 ```sh
 # configurar su nombre de usuario y mail que tiene en github
@@ -58,9 +62,22 @@ git config --global user.email "miemail@mail"
 git config --global core.editor "code --wait"
 # si lo desea muestre la configuración actual en el editor x defecto
 git config --global -e
+
+# la siguiente configuracion la necesitas solo si estas en una version menor a 2.28
+# ver version de git:
+git --version
+# verificar configuracion actual de nombre de rama inicial por defecto
+git config --global init.defaultBranch
+# Si desea que la rama inicial debe ser main y no master hacer:
+git config --global init.defaultBranch main
+# NOTA: a partir de la versión Git versión 2.28 la rama por defecto es main
+
 ```
 
-Comando editor VI, Por si lo necesita:
+O si desea puede configurar el enlace a un solo repositorio, si usa la opcion **--local**.
+
+POr defecto el editos asociado a git es vi (a menos que lo cambie con:```git config --global core.editor "code --wait``` ), por si los necesita estos son los comandos del editor VI:
+
 ```sh
 # comndos del editor vi
 # al entrar al editor vi entra en modo comando, puede moverse con las flechas en el texto y ejecutar comanddoa para:
@@ -94,11 +111,11 @@ git remote add origin https://github.com...
 #bajar el proyecto
 git pull origin main
 # listo ha bajado el proyecto
-# si el pryecto es nuestro y hacemos cambios en el en nuestro equipo y queremos subir los cambios al repo
+# si el pryecto es nuestro y hacemos cambios en el, en nuestro equipo local y queremos subir los cambios al repo
 # creamos un commit
-# pasamos archivoss del derectorio de trajo al stagin area
+# 1 pasamos archivoss del derectorio de trajo al stagin area
 git add .
-# hacemos el commit (esto crea una version o un snap shot del proyecto)
+# 2 hacemos el commit (esto crea una version o un snap shot del proyecto)
 git commit -m "comentario"
 # actualizamos nuestro proyecto por si hubo cambios en el repo
 git pull origin main #por si hubo algun cambio en el remoto
@@ -116,6 +133,12 @@ git clone https://github...
 
 #o si quiere bajar solo una rama:
 git clone -b < branchname > --single-branch < remote-repo-url >
+# hacer cambios
+git add .
+git commit -m "comentario"
+# Subir a la rama
+git pull origin < branchname >
+git push origin < branchname >
 
 ```
 
@@ -155,17 +178,16 @@ build/
 echo "# nodeServerBasico" >> README.md
 # inicializar proyecto
 git init
+# cambiar el nombre de la rama principal a main
+git branch -m main
 git add .
 git commit -m "first commit"
-# cambiar nombre de rama a main si no se llama así, puede ver el nombre de su rama en el prompt que muestra git
 # o ejecutando el comando 
 git log 
 # (esto le muestra los commit con el programa "less" si son muchos lo hara en páginas, al final muestra (end) 
 # para salir de ahi presione la letra q,
 # tambien puede mostra un resumen con
 git log --oneline
-# de ser necesario cambie el nombre de su rama a main
-git branch -M main
 # agregar el repositorio  remoto creado en github
 git remote add origin https://github.com/jflorespampano/minuevoRepo.git
 # subir el repositorio
@@ -175,11 +197,8 @@ git push origin main
 
 # De hecho cuando crea un nuevo repo en github, el github le da la lista de comandos que tiene que ejecutar para subir su repo.
 
-# Resummen subir nuevos camios de tu proyeto a tu remoto, hacer:
-# crear tu proyecto
-# enlazar el remoto
-git remote add origin https://github.com/jflorespampano/minuevoRepo.git
-# agregar tu archivos al staging
+# Si el repositorio no es nuevo: subir nuevos camios de tu proyeto a tu remoto, hacer:
+# agregar tus archivos al staging
 git add .
 # respladar
 git commit -m "commit con mis cambios"
@@ -190,7 +209,18 @@ git push origin main #respaldar tu proyecto en el remoto
 
 ```
 
-Puede usar el flag -u en `git push -u origin main` este, establece una relación de seguimiento entre tu rama local y la rama remota. Esencialmente, le dice a Git que la rama main en tu repositorio local debe rastrear la rama main en el repositorio remoto origin. Después de ejecutar este comando, podrás usar simplemente `git push` o `git pull` en lugar de especificar la rama y el origen cada vez, porque Git ya sabrá a qué rama y a qué remoto te refieres.
+Puede usar el flag -u en `git push -u origin main` este, establece una relación de seguimiento entre tu rama local y la rama remota. Esencialmente, le dice a Git que la rama main en tu repositorio local debe rastrear la rama main en el repositorio remoto origin. Después de ejecutar este comando, podrás usar simplemente `git push` o `git pull` en lugar de especificar la rama y el origen cada vez, porque Git ya sabrá a qué rama y a qué remoto te refieres:
+
+```sh
+# Primera vez (configura tracking):
+git push -u origin main
+
+# Después, solo necesitas:
+git pull
+git push
+
+# ¡Git ya sabe qué rama usar!
+```
 
 
 ## 5 mas sobre remotos <a name="remotos"></a>
@@ -228,7 +258,7 @@ touch redme.md
 
 ```sh
 git init #inicializa el proyecto en rama master
-git status #muestra estado del la rama actual
+git status #muestra estado de la rama actual
 git add archivo #agrega archivo al staging area
 git add . #agrega todos los archivos pendientes al staging
 git add -A #agrega tods los archivos pendientes
@@ -285,7 +315,7 @@ Fuente: https://www.iteramos.com/pregunta/14106/como-salir-del-registro-de-git
 
 ## 7 Ejemplo revertir cambios <a name="recuperar_commit"></a>
 
-### Recuperar un solo archivo a una veriosn anterior
+### Recuperar un solo archivo a una version anterior
 ```sh
 git log --oneline
 #suponga que el id de la version a la que quiere volver es 55df4c2
@@ -399,6 +429,50 @@ git branch -m main
 
 ```
 
+### resumen git revert
+
+Caso básico:
+```sh
+# Deshacer el ÚLTIMO commit
+git revert HEAD
+
+# Se abrirá el editor para el mensaje del commit de revert
+# Guarda y cierra para completar la operación
+
+# o usar:
+git revert HEAD -m "Revert: agregar funcionalidad bugueada"
+```
+
+Deshacer commits especificos:
+
+```sh
+# Deshacer un commit por su hash
+git revert a1b2c3d4
+
+# Deshacer un rango de commits
+git revert HEAD~3..HEAD
+```
+
+### ejemplo práctico git revert
+
+```sh
+# Commit accidental que agregó un archivo con error
+git add archivo-con-error.js
+git commit -m "feat: agregar nueva funcionalidad"
+git push origin main
+
+# ¡Oops! El archivo tiene bugs y rompe la aplicación
+# Solución
+# Crear un commit que deshace los cambios
+git revert HEAD
+
+# Resultado:
+# - Se crea nuevo commit "Revert 'feat: agregar nueva funcionalidad'"
+# - Los cambios del commit original se deshacen
+# - El historial se mantiene intacto
+```
+
+
 
 ## 8 Ramas <a name="ramas"></a>
 ```sh
@@ -446,6 +520,24 @@ git pull remoto #recibe actualizaciones del remoto es la combinacion de git fetc
 git push origin nombre-rama
 ```
 
+Trabajo diario con una rama:
+
+```sh
+# 1. Moverse a la rama
+git checkout feature/login
+
+# 2. Hacer cambios
+# ...editar archivos...
+
+# 3. Commitear cambios
+git add .
+git commit -m "mensaje"
+
+git pull origin feature/login
+# 4. Subir cambios al remoto
+git push origin feature/login
+```
+
 # avanzado
 
 ```sh
@@ -466,7 +558,7 @@ Rebase es una de las dos utilidades de Git que se especializa en integrar cambio
 
 Merge
 Suponga rama master y features
-```
+```sh
 (1)->(2)->(3)
  \
   \->(A)->(B)
@@ -474,7 +566,7 @@ Suponga rama master y features
 Si hacemos un merge en master con features
 ```sh
 (master)$ git merge features
-````
+```
 combina los commit de rama features y hace un commit nuevo a la rama master
 
 `(1)->(2)->(3)->(A/B)`
@@ -489,11 +581,13 @@ combina los commit de rama features y hace un commit nuevo a la rama master
 # create mode 100644 a.txt
 # create mode 100644 b.txt
 ```
+
 Veamos ahora como quedo la rama master
+
 ```sh
 (master)$ git log --oneline --graph
 ```
-```
+```sh
 *   ceb81fe (HEAD -> master) Merge branch 'features' el merge
 |\
 | * 819db54 (features) b en fetures
@@ -505,7 +599,7 @@ Veamos ahora como quedo la rama master
 ```
 ### git rebase
 nuevamente suponga rama master y features
-```
+```sh
 (1)->(2)->(3)
  \
   \->(A)->(B)
@@ -544,7 +638,7 @@ $ git log --oneline --graph
 hizo un merge fast forward
 
 **Resumen rebase**
-```
+```sh
 (1)->(2)->(3)->(4)
  \
   \->(2)->(3)->(4)->(A)->(B)
@@ -555,6 +649,84 @@ hizo un merge fast forward
 * ahora se puede usar el merge  fast forward en master
 
 
+## Ejemplos de subir cambios a repositorio
+
+Si trabajas solo:
+```sh
+# 1. Siempre verificar estado antes
+git status
+
+# 2. Hacer pull
+git pull origin main
+
+# 3. Verificar resultado del pull
+git status
+
+# 4. Si hay conflictos, resolverlos y commitear
+# 5. Si todo está clean, hacer push
+git push origin main
+
+# Recomendacion
+git pull --rebase origin main
+# Esto reubica tus commits encima de los remotos
+# Puede evitar algunos merges automáticos
+```
+
+
+## Trabajo en una rama
+
+```sh
+# 1. Trabajar en tu feature
+git checkout main
+git checkout -b mi-feature
+
+# 2. Hacer commits locales
+git add .
+git commit -m "Mi feature"
+
+# 3. ACTUALIZAR con remoto ANTES de push
+git checkout main
+git pull origin main    # ⬅️ CRÍTICO
+
+# 4. Integrar cambios a tu feature
+git checkout mi-feature
+git rebase main         # o git merge main
+
+# 5. Ahora sí hacer push
+git push origin mi-feature
+```
+
+hacer git pull equivale a :
+
+```sh
+# Esto:
+git pull origin main
+
+# Es equivalente a:
+git fetch origin    # Descarga cambios del remoto
+git merge origin/main # Fusiona con tu rama local
+```
+
+En un equio, se recomienda hacer tu push a la rama en que trabajas y no al main:
+```sh
+# 1. Crear y moverse a la rama
+git checkout -b feature/nueva-funcionalidad
+
+# 2. Hacer cambios en los archivos...
+# (editar archivos con tu editor)
+
+# 3. Verificar cambios
+git status
+
+# 4. Preparar cambios
+git add .
+
+# 5. Hacer commit
+git commit -m "feat: agregar nueva funcionalidad de búsqueda"
+
+# 6. Subir a la rama
+git push origin feature/nueva-funcionalidad
+```
 ## 11 referencias <a name="referencias"></a>
 
 [editar archivos md](https://rurickdev.medium.com/qué-es-markdown-o-cómo-estilizar-el-readme-de-tus-repositorios-c48af9ce7f2a)

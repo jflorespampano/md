@@ -1,3 +1,7 @@
+---
+categoría: herramientas
+tipo: bash
+---
 ## curl
 
 Una URL (Uniform Resource Locator) es una direccion que es dada a un recurso único en la Web. En teoria, cada URL válida apunta a un único recurso.

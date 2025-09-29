@@ -49,3 +49,8 @@ También puedes instalar npm (el administrador de paquetes de Node.js) con:
 ```sh
 sudo apt install npm
 ```
+
+## usar wsl
+
+1. abrir terminal de windows
+2. desde power shell poner >wt

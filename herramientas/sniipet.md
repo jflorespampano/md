@@ -1,3 +1,7 @@
+---
+categoría: herramientas
+tipo: editor
+---
 # snippet (retazo)
 
 Es un fragmento de código en una plantilla reutilizable que permite insertar bloques de código predifinidos.

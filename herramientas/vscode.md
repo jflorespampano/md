@@ -1,3 +1,7 @@
+---
+categoría: herramientas
+tipo: editor
+---
 # Teclas
 
 <pre>
@@ -8,24 +12,24 @@
 </pre>
 
 # Atajos
-|Atajos | acción |
-|-------|--------|
-|ctrl+ñ |abre terminal|
-|ctrl+b | oculta/muestra ventana de archivos|
-|alt+flecha abajo/arriba | - mueve linea|
-|shift+alt+flecha abajo/arriba | - duplica linea|
-|ctrl+' | - outdent|
-|ctrl+L | - seleccionar toda la linea|
-|ctrl + f/h | encuntra reemplaza|
-|f12 | ir a definición|
-|ctrl +/- | zoom|
-|ctrl f | buscar|
-|ctrl   | reemplazar|
-|ctrl + T | encuentra una funcion clase o variable en todos los archivos|
-|ctrl + P | encuentra un archivo específico en el directorio corriente|
-|ctrl + } | comenta|
-|tab/ctrl ' | identa/des|
-|shift-alt-f | formatear texto seleccionado/todo el archivo, con linter/prottier|
+| Atajos                        | acción                                                            |
+| ----------------------------- | ----------------------------------------------------------------- |
+| ctrl+ñ                        | abre terminal                                                     |
+| ctrl+b                        | oculta/muestra ventana de archivos                                |
+| alt+flecha abajo/arriba       | - mueve linea                                                     |
+| shift+alt+flecha abajo/arriba | - duplica linea                                                   |
+| ctrl+'                        | - outdent                                                         |
+| ctrl+L                        | - seleccionar toda la linea                                       |
+| ctrl + f/h                    | encuntra reemplaza                                                |
+| f12                           | ir a definición                                                   |
+| ctrl +/-                      | zoom                                                              |
+| ctrl f                        | buscar                                                            |
+| ctrl                          | reemplazar                                                        |
+| ctrl + T                      | encuentra una funcion clase o variable en todos los archivos      |
+| ctrl + P                      | encuentra un archivo específico en el directorio corriente        |
+| ctrl + }                      | comenta                                                           |
+| tab/ctrl '                    | identa/des                                                        |
+| shift-alt-f                   | formatear texto seleccionado/todo el archivo, con linter/prottier |
 
 Marcar plabra y ctr d duplica cursor
 
@@ -93,8 +97,8 @@ Loggear múltiples variables
 <pre>
 imp import 
 imd import desestructurado
-exp→	export default moduleName
-exd→	export { destructuredModule } from 'module'
+exp	export default moduleName
+exd	export { destructuredModule } from 'module'
 rafc crea una funcion para reac
 rfc  crea una funcion para reac
 nfn crea una funcion nombrada
@@ -103,7 +107,7 @@ clg crea un console log
 prom promesa
 cmmb bloque de comentario
 sto set timeout
-fre→	arrayName.forEach(element => { })
+fre	arrayName.forEach(element => { })
 
 ver snippets aqui: https://github.com/r5n-labs/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
 
@@ -170,3 +174,7 @@ Prefix	Method
 imrn→	import { $1 } from 'react-native'
 rnstyle→	const styles = StyleSheet.create({})
 </pre>
+
+## clonar repositorio
+
+shift + ctrl +p : seleccionar git clone/ pegar direccion url/ logearse y selecciobar carpeta.

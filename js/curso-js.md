@@ -1,14 +1,25 @@
-# Indice
-1. [JS](#js)
-2. [caracteristicas](#caract)
-3. [variables](#variables)
-4. [funciones](#funciones)
-5. [funciones y this](#fyt)
-6. [programacion_funcional](#programacion_funcional)
-7. [inmutabilidad](#inmutabilidad)
-8. [funciones puras](#funciones_puras)
-9. [clases](#clases)
-10 [colores en salisa de consola](#colores)
+---
+categoría: programación
+tipo: js
+---
+
+# Índice
+
+1. [[curso-js#caracteristicas de JS]]
+2. [[curso-js#variables]]
+3. [[curso-js#Funciones]]
+4. [[curso-js#Parámetros]]
+5. [[curso-js#Objetos en js]]
+6. [[curso-js#funciones puras]]
+7. [[curso-js#desestructuración de objetos]]
+8. [[curso-js#map]]
+9. [[curso-js#Filter]]
+10. [[curso-js#reduce]]
+11. [[curso-js#operador coalescencia nula]]
+12. [[curso-js#funciones y this]]
+13. [[curso-js#inmutabilidad en funciones que manejan objetos]]
+14. [[curso-js#programacion funcional]]
+
 
 # Nombres de entidades
 
@@ -17,13 +28,13 @@ camelCase
 snake_case
 kebab-case
 
-# JS <a name="js"></a>
+# JS
 
 JavaScript (JS) es un lenguaje de programación ligero, interpretado, JavaScript es un lenguaje de programación basada en prototipos, multiparadigma, de un solo hilo, dinámico, con soporte para programación orientada a objetos, imperativa y declarativa (por ejemplo programación funcional). (MDNWeb Docs)
 
-Es soprtado por todos los navegadores y tambien se puede usar del lado del servidor  con NODE.JS. NODE es una plataforma open source para el desarrollo de scripts, servidores, web apps y herramientas de linea de comando.
+Es soportado por todos los navegadores y también se puede usar del lado del servidor  con NODE.JS. NODE es una plataforma open source para el desarrollo de scripts, servidores, web apps y herramientas de liínea de comando.
 
-# caracteristicas de JS <a name="caract"></a>
+# características de JS
 
 1. Imperativo: JavaScript es un lenguaje imperativo, es decir, se ejecutan las sentencias de manera secuencial.
 
@@ -65,7 +76,7 @@ Seis tipos de datos primitivos, controlados por el operador typeof
 
 9. Function: una estructura sin datos, aunque también responde al operador typeof: typeof instance === "function". Esta simplemente es una forma abreviada para funciones, aunque cada constructor de funciones se deriva del constructor Object.
 
-## variables <a name="variables"></a>
+## variables
 
 Como js es un lenguaje debilmente tipado, las variables no tienen tipo asignado en la declaración, se declaran así:
 
@@ -113,7 +124,7 @@ const nombre="juan perez"
 nombre="maria uc" //error
 
 ```
-## Funciones <a name="funciones"></a>
+## Funciones
 
 Exsten 2 tipos de funcones: funciones y funciones flecha
 ```js
@@ -138,7 +149,62 @@ console.log(function(a,b){
 
 ```
 
-## programacion funcional <a name="programacion_funcional"></a>
+## Parámetros
+
+```js
+function tablaMultiplicar(tabla, hasta) {
+  for (let i = 0; i <= hasta; i++) {
+    console.log(tabla, "x", i, "=", tabla * i);
+  }
+}
+
+// Ejecución
+tablaMultiplicar(5, 3); // "tabla" valdrá 5 y "hasta" valdrá 3
+
+// Parámetros x default
+function saludo(nombre = "Visitante", mensaje = "Hola") {
+  console.log(mensaje + ", " + nombre);
+}
+
+saludo(); // "Hola, Visitante"
+saludo("Ana"); // "Hola, Ana"
+saludo("Carlos", "Bienvenido"); // "Bienvenido, Carlos"
+
+//Parámetros rest
+function sumar(...numeros) {
+  return numeros.reduce((acumulador, valorActual) => acumulador + valorActual, 0);
+}
+
+console.log(sumar(1, 2)); // 3
+console.log(sumar(5, 10, 15)); // 30
+
+//Desestructuración
+
+// Sin desestructuración
+function mostrarUsuario(usuario) {
+  console.log(usuario.nombre);
+  console.log(usuario.edad);
+  console.log(usuario.ciudad);
+}
+
+// CON desestructuración
+function mostrarUsuario({ nombre, edad, ciudad }) {
+  console.log(nombre);
+  console.log(edad);
+  console.log(ciudad);
+}
+
+// Uso
+const usuario = {
+  nombre: "Ana",
+  edad: 30,
+  ciudad: "Madrid"
+};
+
+mostrarUsuario(usuario);
+// Output: Ana, 30, Madrid
+```
+## programacion funcional
 
 Aunque js no es un lenguaje con el paradigma funcional, podemos usar algunas herramienntas del lenguaje para escribir programas en este paradigma:
 
@@ -149,13 +215,13 @@ Las herramientas a usar son:
 4. Uso del currying.
 5. Composición de funciones.
 
-### inmutabilidad <a name="inmutabilidad"></a>
+### inmutabilidad
 
 Los valores de las variables deben ser inmutables, para lograr esto puede declarar constantes cuando sea posible.
-Tambien hay que recordar que las varibles se asignan por valor y los objestos y arreglos se asignan por referencia.
+También hay que recordar que las variables se asignan por valor y los objetos y arreglos se asignan por referencia.
 vea objetos e inmutabilidad mas adelante.
 
-### funciones puras <a name="funciones_puras"></a>
+### funciones puras 
 
 Una función pura tiene dos propiedades esenciales:
 
@@ -164,7 +230,7 @@ Una función pura tiene dos propiedades esenciales:
 
 **Para lograr esto vea mas adelante el operdor spread**
 
-### currificacion <a name="currificacion"></a>
+### currificación 
 
 Currificar consiste en convertir una función de múltiples variables en una secuencia de  funciones unarias
 
@@ -180,11 +246,11 @@ suma(3)(5); //=> TypeError
 const suma = (a) => (b) => a + b;
 suma(3)(5); //=> 8
 ```
-### funciones de orden superior <a name="funciones de orden superior"></a>
+### funciones de orden superior 
 
 Las funciones de orden superior son aquellas que reciben una o más funciones como argumento o bien devuelven funciones como resultado. Nos interesan porque nos permiten reutilizar la forma de ejecutar otras funciones. En especial nos serán muy útiles map, filter y reduce, los pilares de la programación funcional en JavaScript, su interés principal está en usarlo sobre arrays.
 
-### composicion de funciones <a name="composición de funciones"></a>
+### composicion de funciones 
 
 ```js
 const original = [80, 3, 14, 22, 30];
@@ -222,7 +288,7 @@ console.log(persona)
 console.log(JSON.stringify(persona))
 ```
 
-## Objetos en js <a name="objetos"></a>
+## Objetos en js
 
 Crear objetos:
 Forma 1 con Object:
@@ -267,9 +333,22 @@ myCar["year"] = 1969;
 //por ejemplo para el objeto anterior :
 cosole.log(myCar.color); // undefined
 ```
+
+## desestructuración de objetos
+
+```js
+const objeto = { propiedadVieja: 'valor', otraPropiedad: 42 };
+
+// Desestructuración con renombrado
+const { propiedadVieja: nuevoNombre, otraPropiedad: otroNuevoNombre } = objeto;
+
+console.log(nuevoNombre); // 'valor'
+console.log(otroNuevoNombre); // 42
+console.log(propiedadVieja); // Error: propiedadVieja is not defined
+```
 ## ejemplo objetos
 
-Un objeto prsona:
+Un objeto persona:
 ```js
 const persona={
     id:0,
@@ -313,7 +392,7 @@ console.log(array) //[ 45, 2, 3, 4, 5 ] , sin quererlo mutamos array
 console.log(array2) //[ 45, 2, 3, 4, 5 ]
 ```
 
-### funciones y this <a name="fyt"></a>
+### funciones y this
 
 En una funcion el valor de this está determinado por cómo se invoca a la función. No puede ser establecida mediante una asignación en tiempo de ejecución
 
@@ -379,7 +458,7 @@ console.log(independent()); //logs  undefined //prop esta indefinido
 //por  lo tanto no tiene un contexto lexico asociado y this esta indefinido
 ```
 
-## inmutabilidad de objetos <a name="inmutabilidad de objetos"></a>
+## inmutabilidad de objetos
 
 Suponga que tiene el objeto persona:
 
@@ -401,7 +480,7 @@ persona.nombre="andrea"
 persona.muestra() //muestra el objeto original
 persona2.muestra() //muestra un nuevo objeto con un campo calificacion  agregado
 ```
-## inmutabilidad de arreglos <a name="inmutabilidad de arreglos"></a>
+## inmutabilidad de arreglos
 
 ```js
 //inmutabilidad con operador spread
@@ -419,7 +498,7 @@ const nvoArreglo=arreglo.map((dato)=>{
 
 //nvoArreglo es un nuevo arreglo donde su i-esimo elemento = i-esimo elemento de arreglo * 2
 ```
-## map <a name="map"></a>
+## map
 
 ```js
 let users = [
@@ -436,7 +515,7 @@ let users = [
   console.log(salida)
 ```
 
-## Filter <a name="filter"></a>
+## Filter
 
 ```js
 var arr = [
@@ -473,14 +552,27 @@ var arr = [
   
 ```
 
-## operador coalescencia nula <a name="operador coalescencia nula"></a>
+## reduce
+
+```js
+array.reduce(
+    callback(acumulador, valorActual[, indice[, array]]), valorInicial
+)
+
+const array = [1, 2, 3, 4];
+const valorInicial = 0;
+const suma = array.reduce((acumulador, valorActual) => {
+  return acumulador + valorActual;
+}, valorInicial); // Resultado: 10
+```
+## operador coalescencia nula
 
 ```js
 let name = obj.name ?? 'default name';
 ```
 El operador ?? devolverá el lado izquierdo si no es nulo (es decir, nulo o indefinido), de lo contrario, devolverá el lado derecho. Entonces, en el ejemplo anterior, si obj.name no es nulo o indefinido, el nombre se establecerá en obj.name . Pero si obj.name es nulo o indefinido, el nombre será 'nombre predeterminado'.
 
-## inmutabilidad en funciones que manejan objetos <a name="inmutabilidad en funciones que manejan objetos"></a>
+## inmutabilidad en funciones que manejan objetos
 
 ```js
 const usuarios = [
@@ -521,7 +613,7 @@ Para este mismo ejemplo si queremos insertar el usuario enmedio
 ```js
 const newUsuarios = [...usuarios.slice(0,1), newUser, ...usuarios.slice(3)]
 ```
-## ordenar <a name="ordenar"></a>
+## ordenar
 
 ```js
 //mutable
@@ -539,7 +631,7 @@ usuarios.sort(compare); // [{ id: 3}, {id: 2}, {id: 1}]
 const sorted = [...usuarios].sort(compare)
 ```
 
-## revertir el arreglo <a name="reverse"></a>
+## revertir el arreglo
 
 ```js
 //mutable
@@ -547,7 +639,7 @@ usuarios.revserse(); // [{ id: 1}, {id: 2}, {id: 3}]
 //inmutable
 const inverted = [...usuarios].reverse()
 ```
-## await <a name="await"></a>
+## await
 
 ```js
 const leerDatos=async ()=>{
@@ -572,7 +664,7 @@ async function procesaDatos(){
 procesaDatos()
 
 ```
-## solicitar datos get con fetch <a name="get fetch"></a>
+## solicitar datos get con fetch
 
 ```js
 const url='https://jsonplaceholder.typicode.com/posts'
@@ -608,7 +700,7 @@ const leerdatos=async(url)=>{
 }
 leerdatos('https://jsonplaceholder.typicode.com/posts')
 ```
-## enviar formulario con fetch <a name="formulario fetch"></a>
+## enviar formulario con fetch
 
 ```js
 //enviar datos de un formulario
@@ -645,7 +737,7 @@ fetch(url, {
 })
 ```
 
-## enviar json <a name="enviar json"></a>
+## enviar json
 
 ```js
 //Tomar datos de un formulario y enviarlos en formato json
@@ -731,7 +823,7 @@ const envia=(url,objData)=>{
 envia('https://jsonplaceholder.typicode.com/posts',objData)
 ```
 
-## clases en js <a name="clases"></a>
+## clases en js
 
 Azucar sintactica para la creación de objetos en js
 ```js
@@ -755,7 +847,7 @@ p.nombre="rosa"
 console.log(p.nombre)
 ```
 
-### extends <a name="extends"></a>
+### extends
 
 ```js
 class Animal {
@@ -776,7 +868,7 @@ class Perro extends Animal {
 
 ```
 
-Tambien se pueden extender las clases tradicionales basadas en funciones:
+También se pueden extender las clases tradicionales basadas en funciones:
 
 ```js
 function Animal(nombre) {

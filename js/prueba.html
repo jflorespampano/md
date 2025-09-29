@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="#">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+  <button onclick="document.write(5 + 6)">Probar</button>
+  <input type="button" value="Enviar" onclick="document.write(5 + 5)">
+</form> 
+
+</body>
+<script>
+    let users = [
+        {firstName : "Susan", lastName: "Steward"},
+        {firstName : "Daniel", lastName: "Longbottom"},
+        {firstName : "Jacob", lastName: "Black"}
+    ];
+    
+    let userFullnames = users.map(function(element){
+        return `<li>${element.firstName} ${element.lastName}</li>`;
+    })
+    const salida=userFullnames.join('\n')
+    console.log(userFullnames);
+    console.log(salida)
+</script>
+</html>

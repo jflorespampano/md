@@ -1,6 +1,10 @@
+---
+categoría: herramientas
+tipo: bash
+---
 # Recomendaciones
 
-Para tener una organización en su directorios(carpetas), se recomienda crear la siguiente estrcutura:
+Para tener una organización en su directorios(carpetas), se recomienda crear la siguiente estructura:
 
 Dentro de la carpeta:
 <pre>

@@ -1,3 +1,7 @@
+---
+categoría: herramientas
+tipo: bash
+---
 # Windows power shell
 
 
