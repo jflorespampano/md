@@ -9,3 +9,6 @@ views:
       - file.folder
       - categoría
       - tipo
+    sort:
+      - property: tipo
+        direction: ASC

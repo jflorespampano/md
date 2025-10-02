@@ -1,0 +1,8 @@
+1. [[actividadInstalarR]]
+2. [[Rbasico]]
+3. [[RStudio]]
+4. [[2-areas/ia/lenguaje-r/actividadID3.weka|actividadID3.weka]]
+5. [[pakDealParaRedBayesiana]]
+6. [[2-areas/ia/lenguaje-r/actividadNaiveBayesIris|actividadNaiveBayesIris]]
+7. [[2-areas/ia/se/actividadNBFCI|actividadNBFCI]]
+8. [[funcionesEntropia]]

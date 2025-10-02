@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ia/aprendiaje-automatico/Tensor Flow.md",
+                "file": "2-areas/Programación/Lenguaje rust.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tensor Flow"
+              "title": "Lenguaje rust"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 258.5
   },
   "right": {
     "id": "9d37222138cf9910",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "herramientas/git.md",
+                "file": "ia/aprendiaje-automatico/Regresión lineal.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Enlaces entrantes de git"
+              "title": "Enlaces entrantes de Regresión lineal"
             }
           },
           {
@@ -171,51 +171,51 @@
   },
   "active": "61f6843204545032",
   "lastOpenFiles": [
-    "ia/aprendiaje-automatico/Redes neuronales.md",
-    "ia/aprendiaje-automatico/Clasificación.md",
-    "ia/aprendiaje-automatico/Regresión logística.md",
-    "ia/aprendiaje-automatico/Ejemplo RL.md",
-    "ia/aprendiaje-automatico/Regresión lineal.md",
-    "ia/aprendiaje-automatico/A A introducción.md",
-    "herramientas/vscode.md",
-    "herramientas/Obsidian/Diagramas mermaid.md",
-    "herramientas/Obsidian",
-    "ia/python/python-notas.md",
-    "ia/lenguaje-r/Rbasico.md",
-    "Inteligencia artificial.base",
-    "ia/prolog/Conceptos en Prolog.md",
-    "ia/prolog/gnu-prolog.MD",
-    "ia/lenguaje-r/actividadInstalarR.md",
-    "ia/lenguaje-r/RStudio.md",
+    "2-areas/Programación/Lenguaje zig.md",
+    "2-areas/Programación/Lenguaje rust.md",
+    "2-areas/Programación/Técnicas de programación.md",
+    "2-areas/Programación/Patrones de diseño.md",
+    "2-areas/ia/python/rn-tf-python-iris.md",
+    "2-areas/Programación",
+    "2-areas/ia/python/python-notas.md",
+    "main.md",
+    "2-areas/ia/tensorFlow/tensorflow.md",
+    "2-areas/ia/aprendiaje-automatico/RL con Tensor Flow.md",
+    "2-areas/ia/tensorFlow/parámetros model.compile.md",
+    "2-areas/ia/aprendiaje-automatico/Redes neuronales.md",
+    "2-areas/ia/aprendiaje-automatico/Clasificación.md",
+    "2-areas/ia/aprendiaje-automatico/A A introducción.md",
     "programación.base",
-    "js/node/curso-node-sqlite.md",
-    "js/node/curso-node-sesiones.js.md",
-    "js/node/curso-node-Patrones.md",
-    "js/node/curso-node-motor-plantillas-ejs.md",
-    "js/node/curso-node-modulos.md",
-    "js/node/curso-node-fetch.md",
-    "js/node/curso-node-express.md",
-    "js/node/curso-node-better-sqlite.md",
-    "js/node/curso-node.md",
-    "ia/prolog/java-swiprolog.md",
-    "ia/prolog/tauProlog.md",
-    "ia/lenguaje-r/java-swiprolog.md",
-    "js/react",
-    "js/Nueva carpeta",
-    "js/node",
-    "js/ejercicios-fe",
+    "2-areas/js/node/curso-node-better-sqlite.md",
+    "2-areas/js/node/curso-node-arreglos.md",
     "herramientas.base",
-    "ia/aprendiaje-automatico/imagenes",
-    "ia/aprendiaje-automatico",
-    "ia/aprendiaje-automatico/imagenes/media/image9.png",
+    "1-proyectos",
+    "2-areas",
+    "2-areas/js/curso-js.md",
+    "2-areas/ia/tensorFlow",
+    "2-areas/node/curso-node-objetos.md",
+    "2-areas/node/curso-node-funciones.md",
+    "2-areas/js/curso-js-html.md",
+    "2-areas/js/node/node-curso-promesas.md",
+    "2-areas/js/node/curso-node-Patrones.md",
+    "2-areas/js/node/curso-node-motor-plantillas-ejs.md",
+    "2-areas/js/node/curso-node-modulos.md",
+    "2-areas/js/node/curso-node-fetch.md",
+    "2-areas/js/node/curso-node-promiseAll.md",
+    "2-areas/js/node/curso-node-introduccion.md",
+    "Inteligencia artificial.base",
+    "3-recursos/Obsidian",
+    "2-areas/js/react",
+    "js/Nueva carpeta",
+    "2-areas/ia/aprendiaje-automatico/imagenes/media/image9.png",
     "ia/aprendiaje-automatico/imagenes/media/image7.png",
     "ia/aprendiaje-automatico/imagenes/media/image8.png",
-    "ia/aprendiaje-automatico/imagenes/media/image6.png",
-    "ia/aprendiaje-automatico/imagenes/media/image5.png",
-    "ia/aprendiaje-automatico/imagenes/media/image4.png",
+    "2-areas/ia/aprendiaje-automatico/imagenes/media/image6.png",
+    "2-areas/ia/aprendiaje-automatico/imagenes/media/image5.png",
+    "2-areas/ia/aprendiaje-automatico/imagenes/media/image4.png",
     "ia/aprendiaje-automatico/imagenes/media/image39.png",
-    "ia/aprendiaje-automatico/imagenes/media/image38.png",
-    "ia/aprendiaje-automatico/imagenes/media/image37.png",
-    "ia/aprendiaje-automatico/imagenes/media/image36.png"
+    "2-areas/ia/aprendiaje-automatico/imagenes/media/image38.png",
+    "2-areas/ia/aprendiaje-automatico/imagenes/media/image37.png",
+    "2-areas/ia/aprendiaje-automatico/imagenes/media/image36.png"
   ]
 }
