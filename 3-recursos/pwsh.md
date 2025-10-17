@@ -30,6 +30,6 @@ function prompt {
   '[jf] ' + ($pwd -split '\\')[0]+'...\'+($pwd -split '\\')[-1] + '> ' 
 }
 ```
-## refs
+## Referencias
 
-[1](https://blog.victorsilva.com.uy/powershell-customizar-prompt/)
+[Power shell](https://blog.victorsilva.com.uy/powershell-customizar-prompt/)

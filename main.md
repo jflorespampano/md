@@ -10,10 +10,12 @@
 * [[curso-js-html]]
 * [[Indice node]]
 * [[indice react]]
-* [[mis_herramientas]]
+* [[indice Herramientas]]
 
 ## Inteligencia artificial
 
-* [[indice AA]]
+* [[Índice AA]]
 * [[Índice Lenguaje R]]
-
+* [[Índice Prolog]]
+## Herramientas
+* [[git índice]]

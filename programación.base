@@ -4,3 +4,6 @@ views:
     filters:
       and:
         - categoría == "programación"
+    order:
+      - file.name
+      - file.folder

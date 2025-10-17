@@ -7,17 +7,11 @@ tipo: etc
 Replit.com es una plataforma en línea que permite programar, colaborar y alojar proyectos directamente desde el navegador, sin necesidad de instalar software localmente. Es muy popular entre estudiantes, desarrolladores y educadores por su facilidad de uso y sus características colaborativas.
 
 [replit](https://replit.com/)
-
 [editor/compilador de código en línea](https://codesandbox.io/s/react-hook-form-get-started-j5wxo)
-
 [Excalidraw](https://excalidraw.com/)
-
 [obsidian, probar](https://obsidian.md/)
-
 [notion, probar](https://www.notion.com/es)
-
 [validar json](https://jsonlint.com/)
-
 [navaja suiza para desarrolladores](https://devtoys.app/)
 
 Probar código en js
@@ -40,27 +34,18 @@ herramienta para hacer apps responsivas
 ## css
 
 [probar css en linea](https://codi.link/%7C%7C)
-
 [calculador de especificidad] (https://specificity.keegan.st/)
-
 [manz](https://lenguajecss.com/)
-
 [web.dev aprender css](https://web.dev/learn/css?hl=es)
-
 [css](https://developer.mozilla.org/es/docs/Web/CSS)
-
 [z-index](https://web.dev/learn/css/z-index?hl=es)
-
 [retors css](https://www.frontendmentor.io/)
 
 ## color piker
 
 [color piker](https://www.w3schools.com/colors/colors_picker.asp)
-
 [image color piker](https://imagecolorpicker.com/)
-
 [color piker](https://rgbcolorpicker.com/)
-
 [oklch](https://oklch.com/#70,0.1,89,100)
 
 ## pandoc

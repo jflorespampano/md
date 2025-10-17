@@ -91,7 +91,12 @@ Loggear múltiples variables
 * Selecciona varias variables (mantén Shift + clic o Ctrl + selección).
 * Presiona Ctrl + Alt + L y se generarán varios console.log().
 
-
+* selecciona la variable o expresión
+	1. ctrl+alt+L pone un console.log
+	2. alt+shift+d borra los console.log
+	3. alt+shift+c comenta los los console.log
+	4. alt+shift+u descomenta
+	5. alt+shift+x corregir
 # complemento ES7 -react-js-snippets
 
 <pre>
@@ -178,3 +183,21 @@ rnstyle→	const styles = StyleSheet.create({})
 ## clonar repositorio
 
 shift + ctrl +p : seleccionar git clone/ pegar direccion url/ logearse y selecciobar carpeta.
+
+## Emet
+
+```text
+nav>ul>li*3>a[href=#]{Enlace $}
+(label{Etiqueta $}+input[type="text"])*5
+```
+
+## Formatear código
+
+```text
+ctrl+k,ctrl+f # formatea bloque # no con prittier
+shift+alt+f formatear todo el documento
+```
+
+```json
+"editor.defaultFormatter": "esbenp.prettier-vscode"   
+```

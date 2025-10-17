@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "c8c60ec78e8588f1",
+        "id": "5892af15c73744a1",
         "type": "tabs",
         "children": [
           {
-            "id": "61f6843204545032",
+            "id": "deabea732eb96f9d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-areas/Programación/Lenguaje rust.md",
+                "file": "2-areas/Programación avanzada/node/curso-node-objetos.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lenguaje rust"
+              "title": "curso-node-objetos"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 258.5
+    "width": 322.5
   },
   "right": {
     "id": "9d37222138cf9910",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ia/aprendiaje-automatico/Regresión lineal.md",
+                "file": "2-areas/Programación avanzada/js/curso-js-html.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Enlaces entrantes de Regresión lineal"
+              "title": "Enlaces entrantes de curso-js-html"
             }
           },
           {
@@ -151,7 +151,8 @@
               "title": "Esquema de git"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -169,53 +170,53 @@
       "bases:Crear nueva base": false
     }
   },
-  "active": "61f6843204545032",
+  "active": "deabea732eb96f9d",
   "lastOpenFiles": [
-    "2-areas/Programación/Lenguaje zig.md",
-    "2-areas/Programación/Lenguaje rust.md",
-    "2-areas/Programación/Técnicas de programación.md",
-    "2-areas/Programación/Patrones de diseño.md",
-    "2-areas/ia/python/rn-tf-python-iris.md",
-    "2-areas/Programación",
-    "2-areas/ia/python/python-notas.md",
-    "main.md",
-    "2-areas/ia/tensorFlow/tensorflow.md",
-    "2-areas/ia/aprendiaje-automatico/RL con Tensor Flow.md",
-    "2-areas/ia/tensorFlow/parámetros model.compile.md",
-    "2-areas/ia/aprendiaje-automatico/Redes neuronales.md",
-    "2-areas/ia/aprendiaje-automatico/Clasificación.md",
-    "2-areas/ia/aprendiaje-automatico/A A introducción.md",
-    "programación.base",
-    "2-areas/js/node/curso-node-better-sqlite.md",
-    "2-areas/js/node/curso-node-arreglos.md",
+    "3-recursos/bash (Bourne Again Shell).md",
+    "3-recursos/Obsidian/Diagramas mermaid.md",
+    "2-areas/Programación avanzada/node/curso-node-arreglos.md",
+    "2-areas/Programación avanzada/node/curso-node-inicio.md",
+    "2-areas/ia/lenguaje-r/actividadRedNeuronal.md",
+    "3-recursos/git/git proyect.md",
+    "3-recursos/git/git branch.md",
+    "3-recursos/git/git pull.md",
+    "3-recursos/git/gitHub Desktop.md",
+    "3-recursos/git/gitResumen.md",
+    "3-recursos/herramintas_varias.md",
+    "3-recursos/pwsh.md",
+    "3-recursos/git/git restore.md",
+    "2-areas/Programación avanzada/js/ejemplos fetch axios/axios.md",
+    "2-areas/Programación avanzada/node/curso-node-axios.md",
+    "2-areas/Programación avanzada/node/Sin título.md",
+    "2-areas/Programación avanzada/js/ejemplos fetch axios/axios await.md",
+    "2-areas/Programación avanzada/node/curso-node-fetch.md",
+    "2-areas/Programación avanzada/node/curso-node-promesas.md",
+    "2-areas/Programación avanzada/js/curso-js-html.md",
+    "2-areas/Programación avanzada/js/curso-js.md",
+    "2-areas/Programación avanzada/js/axios vs fetch.md",
+    "3-recursos/git/GitHun Cli.md",
+    "3-recursos/git/gitToken.md",
+    "3-recursos/git/git generar llave publica.md",
+    "2-areas/Programación básica/Lenguaje c.md",
     "herramientas.base",
-    "1-proyectos",
-    "2-areas",
-    "2-areas/js/curso-js.md",
-    "2-areas/ia/tensorFlow",
-    "2-areas/node/curso-node-objetos.md",
-    "2-areas/node/curso-node-funciones.md",
-    "2-areas/js/curso-js-html.md",
-    "2-areas/js/node/node-curso-promesas.md",
-    "2-areas/js/node/curso-node-Patrones.md",
-    "2-areas/js/node/curso-node-motor-plantillas-ejs.md",
-    "2-areas/js/node/curso-node-modulos.md",
-    "2-areas/js/node/curso-node-fetch.md",
-    "2-areas/js/node/curso-node-promiseAll.md",
-    "2-areas/js/node/curso-node-introduccion.md",
+    "3-recursos/git/adjuntos/Pasted image 20251010122715.png",
+    "3-recursos/git/adjuntos/gitFlow.png",
+    "3-recursos/git/adjuntos/Pasted image 20251010115250.png",
+    "3-recursos/git/adjuntos/Pasted image 20251010114655.png",
+    "3-recursos/git/adjuntos/Pasted image 20251010113732.png",
+    "3-recursos/git/adjuntos/Pasted image 20251010113502.png",
+    "3-recursos/git/adjuntos/Pasted image 20251010113317.png",
+    "3-recursos/git/adjuntos/Pasted image 20251010112854.png",
+    "3-recursos/git/adjuntos/Pasted image 20251010112645.png",
+    "3-recursos/git/adjuntos/Pasted image 20251010112224.png",
+    "2-areas/Programación avanzada/js/ejemplos fetch axios",
+    "3-recursos/git/adjuntos/Git Hub Proyects.pdf",
+    "3-recursos/git/adjuntos",
+    "programación.base",
     "Inteligencia artificial.base",
-    "3-recursos/Obsidian",
-    "2-areas/js/react",
-    "js/Nueva carpeta",
-    "2-areas/ia/aprendiaje-automatico/imagenes/media/image9.png",
-    "ia/aprendiaje-automatico/imagenes/media/image7.png",
-    "ia/aprendiaje-automatico/imagenes/media/image8.png",
-    "2-areas/ia/aprendiaje-automatico/imagenes/media/image6.png",
-    "2-areas/ia/aprendiaje-automatico/imagenes/media/image5.png",
-    "2-areas/ia/aprendiaje-automatico/imagenes/media/image4.png",
-    "ia/aprendiaje-automatico/imagenes/media/image39.png",
-    "2-areas/ia/aprendiaje-automatico/imagenes/media/image38.png",
-    "2-areas/ia/aprendiaje-automatico/imagenes/media/image37.png",
-    "2-areas/ia/aprendiaje-automatico/imagenes/media/image36.png"
+    "3-recursos/git",
+    "2-areas/ia/sci-lab/adjuntos/Graficar puntos scilab.pdf",
+    "2-areas/ia/sci-lab/adjuntos/trazarLinea-SCILAB.pdf",
+    "2-areas/ia/sci-lab/adjuntos"
   ]
 }

@@ -17,16 +17,16 @@ curl -X POST/GET/PATCH/DELETE [url]
 ```
 Las opciones y sus sinonimos:
 
--X sinonimo --request
--H sinonimo --header
--d sinonimo --data
+-X sinónimo --request
+-H sinónimo --header
+-d sinónimo --data
 La opción -v no muestra las cabeceras, la enviada por el cliente y la que devuelve el servidor.
 La opción -i nos da la información resumida
-La opcion -I devuelve solo los encabezados de la petición
+La opción -I devuelve solo los encabezados de la petición
 
-La opcion -H indica el tipo de codificación de datos. 
+La opción -H indica el tipo de codificación de datos. 
 Codificaciones en http
-```sh
+```text
 Content-Type: application/json
 Content-Type: application/x-www-form-urlencoded
 Content-Type: text/html; charset=utf-8
@@ -90,8 +90,9 @@ curl --request POST https://jsonplaceholder.typicode.com/posts ^
 ```
 En windows usando power shell no se recomienda por que usa su propio curl (invoke-restmethod)
 
-# Ejemplo con https://jsonplaceholder.typicode.com/posts
+# Ejemplo con data fake 
 
+[Usando la página de datafake jsonplaiceholder](https://jsonplaceholder.typicode.com/posts)
 
 ## Ejemplo con Get
 
@@ -142,7 +143,7 @@ curl -X POST -H "Content-Type: Application/json"  -d "@data.json"  https://jsonp
 
 ## ejemplos
 
-Ejemplo usàndo datafake
+Ejemplo usando datafake
 ```sh
 #solicitar datos get
 curl  https://jsonplaceholder.typicode.com/posts

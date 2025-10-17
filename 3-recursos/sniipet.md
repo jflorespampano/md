@@ -4,7 +4,7 @@ tipo: editor
 ---
 # snippet (retazo)
 
-Es un fragmento de código en una plantilla reutilizable que permite insertar bloques de código predifinidos.
+Es un fragmento de código en una plantilla reutilizable que permite insertar bloques de código predefinidos.
 VS Code incluye snippets predeterminados para muchos lenguajes (ej: for en JavaScript o div en HTML).
 
 
@@ -43,16 +43,16 @@ Escribe clog en un archivo JavaScript y presiona Tab.
 
 ## generador de snippet's
 
-En la siguiente ligaa encontrarás un generados de snippets.
+En la siguiente liga encontrarás un generados de snippets.
 
 [generados snippets](https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode)
 
 Uso:
 * generamos el snippet
 * lo copiamos
-* Para gregarlo a vscode:
+* Para agregarlo a Vscode:
 archivo/preferencias/configurar fragmentos de usuario
-ahi, seleccionamos para que lenguajes estara disponible
+ahí, seleccionamos para que lenguajes estará disponible
 una vez echo eso, añadirlo al json
 
 para usarlo poner la palabra que lo dispara y presionar tab
